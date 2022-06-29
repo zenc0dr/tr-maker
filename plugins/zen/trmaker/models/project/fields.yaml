@@ -1,0 +1,33 @@
+fields:
+    name:
+        label: 'Название проекта'
+        span: full
+        type: text
+tabs:
+    fields:
+        desc:
+            label: 'Описание проекта'
+            size: giant
+            span: full
+            type: richeditor
+            tab: Описание
+        blocks_repeater:
+            label: 'Набор блоков проекта'
+            prompt: 'Добавить блок'
+            style: default
+            span: full
+            type: repeater
+            tab: Блоки
+            form:
+                fields:
+                    block_id:
+                        label: Блок
+                        span: full
+                        showSearch: true
+                        type: dropdown
+        tr:
+            label: ''
+            span: full
+            path: $/zen/trmaker/controllers/projects/tr.php
+            type: partial
+            tab: ТЗ

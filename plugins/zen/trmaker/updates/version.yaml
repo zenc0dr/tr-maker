@@ -1,0 +1,11 @@
+1.0.1:
+    - 'Initialize plugin.'
+1.0.2:
+    - 'Created table zen_trmaker_blocks'
+    - builder_table_create_zen_trmaker_blocks.php
+1.0.3:
+    - 'Created table zen_trmaker_projects'
+    - builder_table_create_zen_trmaker_projects.php
+1.0.4:
+    - 'Created table zen_trmaker_projects_blocks_pivot'
+    - builder_table_create_zen_trmaker_projects_blocks_pivot.php

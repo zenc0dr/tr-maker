@@ -1,0 +1,16 @@
+name: Блок
+modelClass: Zen\TrMaker\Models\Block
+form: $/zen/trmaker/models/block/fields.yaml
+defaultRedirect: zen/trmaker/blocks
+create:
+    title: 'Создать блок'
+    redirect: 'zen/trmaker/blocks/update/:id'
+    redirectClose: zen/trmaker/blocks
+    flashSave: 'Блок создан'
+update:
+    title: 'Изменить блок'
+    redirect: zen/trmaker/blocks
+    redirectClose: zen/trmaker/blocks
+    flashSave: 'Блок сохранён'
+    flashDelete: 'Блок удалён'
+preview: {  }

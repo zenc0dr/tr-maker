@@ -1,0 +1,68 @@
+<div class="tr-project">
+    <h3 class="tr-project__header text-center">Проект: {{ project.name }}</h3>
+    <div class="tr-project__blocks">
+        <div class="tr-project__blocks__row titles">
+            <div class="tr-project__blocks__cell" style="width:300px">
+                Название блока
+            </div>
+            <div class="tr-project__blocks__cell" style="flex: 1 0 0">
+                Краткое описание блока
+            </div>
+            <div class="tr-project__blocks__cell" style="width:200px">
+                Время
+            </div>
+            <div class="tr-project__blocks__cell" style="width:200px">
+                Цена блока
+            </div>
+        </div>
+        {% for block in project.blocks %}
+        <div class="tr-project__blocks__row">
+            <div class="tr-project__blocks__cell" style="width:300px">
+                {{ block.name }}
+            </div>
+            <div class="tr-project__blocks__cell" style="flex: 1 0 0">
+                {{ block.desc_short|raw }}
+            </div>
+            <div class="tr-project__blocks__cell" style="width:200px">
+                {{ block.stringTime() }}
+            </div>
+            <div class="tr-project__blocks__cell" style="width:200px">
+                {{ block.price }} руб.
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+
+
+<style>
+    .tr-project {
+        width: 100%;
+        background: #fff;
+        padding: 15px;
+        color: #797979;
+        font-size: 17px;
+    }
+    .tr-project__header {
+        padding-bottom: 20px;
+        border-bottom: 1px solid #cccccc;
+        margin-bottom: 50px;
+    }
+    .tr-project__blocks {
+        margin-bottom: 30px;
+    }
+    .tr-project__blocks__row {
+        display: flex;
+        justify-content: space-between;
+    }
+    .tr-project__blocks__cell {
+        padding: 10px;
+    }
+    .tr-project__blocks__row.titles {
+        background: #e9edf3;
+        border-radius: 5px;
+    }
+    .titles .tr-project__blocks__cell {
+        font-weight: bold;
+    }
+</style>

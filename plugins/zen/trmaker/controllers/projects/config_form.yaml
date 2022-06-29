@@ -1,0 +1,16 @@
+name: Проект
+modelClass: Zen\TrMaker\Models\Project
+form: $/zen/trmaker/models/project/fields.yaml
+defaultRedirect: zen/trmaker/projects
+create:
+    title: 'Создать проект'
+    redirect: 'zen/trmaker/projects/update/:id'
+    redirectClose: zen/trmaker/projects
+    flashSave: 'Проект создан'
+update:
+    title: 'Проект обновлён'
+    redirect: zen/trmaker/projects
+    redirectClose: zen/trmaker/projects
+    flashSave: 'Проект сохранён'
+    flashDelete: 'Проект удалён'
+preview: {  }

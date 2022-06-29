@@ -1,0 +1,30 @@
+plugin:
+    name: 'zen.trmaker::lang.plugin.name'
+    description: 'zen.trmaker::lang.plugin.description'
+    author: 'Alex Blaze'
+    icon: oc-icon-briefcase
+    homepage: ''
+navigation:
+    main:
+        label: 'Конструктор ТЗ'
+        url: /
+        icon: icon-briefcase
+        sideMenu:
+            blocks:
+                label: Блоки
+                url: zen/trmaker/blocks
+                icon: icon-tablet
+                permissions:
+                    - tr-maker.main
+            projects:
+                label: Проекты
+                url: zen/trmaker/projects
+                icon: icon-sitemap
+                permissions:
+                    - tr-maker.main
+        permissions:
+            - tr-maker.main
+permissions:
+    tr-maker.main:
+        tab: 'Конструктор ТЗ'
+        label: 'Глобальный доступ'

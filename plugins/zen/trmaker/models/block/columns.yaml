@@ -1,0 +1,20 @@
+columns:
+    id:
+        label: id
+        type: number
+        sortable: true
+        width: 50px
+    name:
+        label: Название
+        type: text
+        searchable: true
+    time:
+        label: Время
+        type: number
+        sortable: true
+        width: 100px
+    price:
+        label: Цена
+        type: number
+        sortable: true
+        width: 100px

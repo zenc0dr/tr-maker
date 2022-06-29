@@ -1,0 +1,31 @@
+fields:
+    name:
+        label: 'Название блока'
+        span: full
+        type: text
+tabs:
+    fields:
+        desc_short:
+            label: 'Краткое описание'
+            size: small
+            span: full
+            type: textarea
+            tab: Основное
+        time:
+            label: 'Требует времени (Приблизительно)'
+            showSearch: true
+            span: auto
+            default: '60'
+            type: dropdown
+            tab: Основное
+        price:
+            label: 'Цена (Приблизительно)'
+            span: auto
+            type: number
+            tab: Основное
+        desc_full:
+            label: 'Полное описание'
+            size: giant
+            span: full
+            type: richeditor
+            tab: Детально
