@@ -1,0 +1,10 @@
+name: Layouts
+form: $/zen/trmaker/models/layout/fields.yaml
+modelClass: Zen\TrMaker\Models\Layout
+defaultRedirect: zen/trmaker/layouts
+create:
+    redirect: 'zen/trmaker/layouts/update/:id'
+    redirectClose: zen/trmaker/layouts
+update:
+    redirect: zen/trmaker/layouts
+    redirectClose: zen/trmaker/layouts

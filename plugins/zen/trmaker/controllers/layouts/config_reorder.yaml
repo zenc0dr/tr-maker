@@ -1,0 +1,4 @@
+title: Layouts
+modelClass: Zen\TrMaker\Models\Layout
+toolbar:
+    buttons: reorder_toolbar

@@ -1,0 +1,38 @@
+fields:
+    active:
+        label: Активность
+        span: full
+        type: switch
+    name:
+        label: Название
+        span: auto
+        required: 1
+        type: text
+    slug:
+        label: Slug
+        span: auto
+        required: 1
+        preset:
+            field: name
+            type: slug
+        type: text
+    project_id:
+        label: 'Выбор проекта'
+        showSearch: true
+        span: auto
+        type: dropdown
+    created_at:
+        label: 'Дата создания'
+        mode: datetime
+        span: auto
+        readOnly: 1
+        type: datepicker
+        comment: 'создается автоматически'
+tabs:
+    fields:
+        description:
+            label: Описание
+            size: small
+            span: full
+            type: textarea
+            tab: Описание

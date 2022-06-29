@@ -22,6 +22,10 @@ navigation:
                 icon: icon-sitemap
                 permissions:
                     - tr-maker.main
+            side-menu-item:
+                label: Шаблоны
+                url: zen/trmaker/layouts
+                icon: icon-table
         permissions:
             - tr-maker.main
 permissions:

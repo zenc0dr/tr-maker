@@ -1,0 +1,12 @@
+list: $/zen/trmaker/models/layout/columns.yaml
+modelClass: Zen\TrMaker\Models\Layout
+title: Layouts
+noRecordsMessage: 'backend::lang.list.no_records'
+showSetup: true
+showCheckboxes: true
+recordsPerPage: 20
+toolbar:
+    buttons: list_toolbar
+    search:
+        prompt: 'backend::lang.list.search_prompt'
+recordUrl: 'zen/trmaker/layouts/update/:id'

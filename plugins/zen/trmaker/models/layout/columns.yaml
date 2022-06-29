@@ -1,0 +1,23 @@
+columns:
+    id:
+        label: id
+        type: number
+        sortable: true
+    name:
+        label: Название
+        type: text
+        searchable: true
+        sortable: true
+    slug:
+        label: Slug
+        type: text
+        searchable: true
+        sortable: true
+    active:
+        label: Активность
+        type: partial
+        sortable: true
+    created_at:
+        label: 'Дата создания'
+        type: datetime
+        sortable: true

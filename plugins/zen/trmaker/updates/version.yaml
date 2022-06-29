@@ -9,3 +9,12 @@
 1.0.4:
     - 'Created table zen_trmaker_projects_blocks_pivot'
     - builder_table_create_zen_trmaker_projects_blocks_pivot.php
+1.0.5:
+    - 'Created table zen_trmaker_layouts'
+    - builder_table_create_zen_trmaker_layouts.php
+1.0.6:
+    - 'Updated table zen_trmaker_layouts'
+    - builder_table_update_zen_trmaker_layouts.php
+1.0.7:
+    - 'Updated table zen_trmaker_layouts'
+    - builder_table_update_zen_trmaker_layouts_2.php
