@@ -1,0 +1,10 @@
+name: Pages
+form: $/zen/trmaker/models/page/fields.yaml
+modelClass: Zen\TrMaker\Models\Page
+defaultRedirect: zen/trmaker/pages
+create:
+    redirect: 'zen/trmaker/pages/update/:id'
+    redirectClose: zen/trmaker/pages
+update:
+    redirect: zen/trmaker/pages
+    redirectClose: zen/trmaker/pages

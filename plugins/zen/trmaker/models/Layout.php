@@ -32,4 +32,20 @@ class Layout extends Model
         }
         return [0 => 'Нет'];
     }
+
+    public function getHeaderIdOptions()
+    {
+        if (Block::count()) {
+            return [0 => 'Нет'] + Block::lists('name', 'id', '- ');
+        }
+        return [0 => 'Нет'];
+    }
+
+    public function getFooterIdOptions()
+    {
+        if (Block::count()) {
+            return [0 => 'Нет'] + Block::lists('name', 'id', '- ');
+        }
+        return [0 => 'Нет'];
+    }
 }

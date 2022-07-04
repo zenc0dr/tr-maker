@@ -36,3 +36,17 @@ tabs:
             span: full
             type: textarea
             tab: Описание
+        header_id:
+            label: Шапка
+            showSearch: true
+            span: auto
+            type: dropdown
+            comment: 'выбирай шапку'
+            tab: Описание
+        footer_id:
+            label: Подвал
+            showSearch: true
+            span: auto
+            type: dropdown
+            comment: 'выбирай подвал'
+            tab: Описание

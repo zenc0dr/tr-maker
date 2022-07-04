@@ -18,3 +18,18 @@
 1.0.7:
     - 'Updated table zen_trmaker_layouts'
     - builder_table_update_zen_trmaker_layouts_2.php
+1.0.8:
+    - 'Updated table zen_trmaker_projects'
+    - builder_table_update_zen_trmaker_projects.php
+1.0.9:
+    - 'Updated table zen_trmaker_layouts'
+    - builder_table_update_zen_trmaker_layouts_3.php
+1.0.10:
+    - 'Created table zen_trmaker_pages'
+    - builder_table_create_zen_trmaker_pages.php
+1.0.11:
+    - 'Updated table zen_trmaker_pages'
+    - builder_table_update_zen_trmaker_pages.php
+1.0.12:
+    - 'Updated table zen_trmaker_pages'
+    - builder_table_update_zen_trmaker_pages_2.php

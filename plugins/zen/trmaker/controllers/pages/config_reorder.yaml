@@ -1,0 +1,4 @@
+title: Pages
+modelClass: Zen\TrMaker\Models\Page
+toolbar:
+    buttons: reorder_toolbar

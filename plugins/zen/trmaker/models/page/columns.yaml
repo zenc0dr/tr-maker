@@ -1,0 +1,30 @@
+columns:
+    id:
+        label: id
+        type: text
+        sortable: true
+    name:
+        label: Название
+        type: text
+        searchable: true
+        sortable: true
+    slug:
+        label: Slug
+        type: text
+        searchable: true
+        sortable: true
+    parent_id:
+        label: Родительская
+        type: text
+        sortable: true
+        relation: parent
+        valueFrom: name
+    created_at:
+        label: Создана
+        type: datetime
+        sortable: true
+    url:
+        label: 'Полная ссылка'
+        type: partial
+        searchable: true
+        sortable: true

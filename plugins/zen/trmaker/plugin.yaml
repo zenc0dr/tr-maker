@@ -25,6 +25,10 @@ navigation:
             side-menu-item:
                 label: Шаблоны
                 url: zen/trmaker/layouts
+                icon: icon-th-large
+            side-menu-item2:
+                label: Страницы
+                url: zen/trmaker/pages
                 icon: icon-table
         permissions:
             - tr-maker.main
