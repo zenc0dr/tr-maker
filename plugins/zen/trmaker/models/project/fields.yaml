@@ -1,8 +1,21 @@
 fields:
+    active:
+        label: Активность
+        span: full
+        default: 1
+        required: 0
+        type: switch
     name:
         label: 'Название проекта'
-        span: full
+        span: left
         type: text
+    created_at:
+        label: 'Дата создания'
+        mode: datetime
+        span: auto
+        disabled: 1
+        type: datepicker
+        comment: автоматически
 tabs:
     fields:
         desc:
@@ -11,20 +24,6 @@ tabs:
             span: full
             type: richeditor
             tab: Описание
-        blocks_repeater:
-            label: 'Набор блоков проекта'
-            prompt: 'Добавить блок'
-            style: default
-            span: full
-            type: repeater
-            tab: Блоки
-            form:
-                fields:
-                    block_id:
-                        label: Блок
-                        span: full
-                        showSearch: true
-                        type: dropdown
         tr:
             label: ''
             span: full

@@ -1,0 +1,35 @@
+{
+  "name": "Example october-studio project",
+  "version": "1.0.0",
+  "description": "Professional theme october-studio",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Alex Blaze",
+  "license": "MIT",
+  "devDependencies": {
+    "bootstrap": "^5.1.3",
+    "bootstrap-icons": "^1.7.2",
+    "clean-webpack-plugin": "^4.0.0",
+    "jquery": "^3.6.0",
+    "jquery-ui": "^1.13.1",
+    "laravel-mix": "^6.0.39",
+    "laravel-mix-purgecss": "^6.0.0",
+    "laravel-mix-versionhash": "^2.0.1",
+    "popper.js": "^1.16.1",
+    "postcss": "^8.4.5",
+    "postcss-loader": "^6.2.1",
+    "resolve-url-loader": "^4.0.0",
+    "sass": "^1.47.0",
+    "sass-loader": "^12.4.0",
+    "vue": "^2.6.14",
+    "vue-loader": "^15.9.8",
+    "vue-template-compiler": "^2.6.14"
+  },
+  "dependencies": {
+    "axios": "^0.25.0",
+    "highlight.js": "^9.18.1",
+    "opensans-npm-webfont": "^1.0.0"
+  }
+}

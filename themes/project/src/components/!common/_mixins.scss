@@ -1,0 +1,237 @@
+// @include trans( prop );
+@mixin trans( $prop ) {
+	transition: $prop $transitionTime linear;
+}
+
+// @include rtl();
+@mixin rtl() {
+	[dir=rtl] & {
+		@content
+	}
+}
+
+// @include ltr();
+@mixin ltr() {
+	[dir=ltr] & {
+		@content
+	}
+}
+
+// @include light();
+@mixin light() {
+	body.light & {
+		@content
+	}
+}
+
+
+
+// @include lang();
+@mixin lang( $code ) {
+	[lang=#{$code}] & {
+		@content
+	}
+}
+
+//@include clear-button();
+@mixin clear-button {
+	border: 0;
+	outline: 0;
+	background-color: transparent;
+	text-decoration: none;
+	font-size: inherit;
+	font-weight: inherit;
+	font-family: inherit;
+	color: inherit;
+	padding: 0;
+	-webkit-tap-highlight-color: transparent;
+}
+
+@mixin default-button {
+	@include clear-button();
+	cursor: pointer;
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+}
+
+//@include placeholder {color: #eee;}
+@mixin placeholder {
+	&::-webkit-input-placeholder {@content}
+	&:-moz-placeholder           {@content}
+	&::-moz-placeholder          {@content; opacity: 1;}
+	&:-ms-input-placeholder      {@content}
+}
+
+//@include min( size )
+@mixin min( $sz ) {
+	@if map-has-key($screens, $sz) {
+		@media screen and ( min-width: #{ em( map-get( $screens, $sz ) ) } ) {
+			@content;
+		}
+	}
+	@else {
+		@media screen and ( min-width: $sz ) {
+			@content;
+		}
+	}
+}
+
+//@include m( size )
+@mixin m( $sz ) {
+	@if map-has-key($screens, $sz) {
+		@media screen and ( max-width: #{ rem( map-get( $screens, $sz ) ) } ) {
+			@content;
+		}
+	}
+	@else {
+		@media screen and ( max-width: $sz ) {
+			@content;
+		}
+	}
+}
+
+//@include hr( $color, $size );
+@mixin hr( $color:#ccc, $size: 1px  ) {
+	border: none;
+	background-color: $color;
+	color: $color;
+	height: $size;
+}
+
+//@include debug();
+@mixin debug( $color:red, $size: 1px ) {
+	box-shadow: inset 0px 0px $size 0px rgba($color, 1 );
+}
+
+@mixin underline( $color, $height, $padding:100%, $style:solid ) {
+	@if $style == solid {
+		background-image: linear-gradient(to right, $color, $color 100%);
+		background-size: 10px $height;
+	}
+
+	@if $style == dashed {
+		background-image: linear-gradient(to right, $color, $color 60%, transparent 60%);
+		background-size: 4px $height;
+	}
+
+	@if $style == dotted {
+		background-image: linear-gradient(to right, $color, $color 50%, transparent 50%);
+		background-size: 3px $height;
+	}
+
+	background-position: 0 $padding;
+	background-repeat: repeat-x;
+	text-decoration: none;
+}
+
+
+@mixin genColors() {
+	@each $breakpoint in map-keys($grid-breakpoints) {
+		@include media-breakpoint-up($breakpoint) {
+			$infix: breakpoint-infix($breakpoint, $grid-breakpoints);
+
+			@each $color, $value in $defColors {
+				.c#{$infix}-#{$color}{
+				  color: $value;
+				}
+				.bg#{$infix}-#{$color}{
+				  background-color: $value;
+				}
+		  }
+		}
+	}
+	
+ }
+
+
+ @mixin genFontFamily() {
+	@each $font, $value in $fonts {
+		 .ff-#{$font}{
+			font-family: $value;
+		 }
+	  }
+ }
+
+
+// @mixin genFontSize() {
+//	@each $font, $value in $font-sizes {
+//		 .fs-#{$font}{
+//			font-size: $value;
+//		 }
+//	  }
+// }
+
+// BOOTSTRAP MIXINS //
+@function breakpoint-min($name, $breakpoints: $grid-breakpoints) {
+	$min: map-get($breakpoints, $name);
+	@return if($min != 0, $min, null);
+ }
+ 
+ @function breakpoint-max($name, $breakpoints: $grid-breakpoints) {
+	$max: map-get($breakpoints, $name);
+	@return if($max and $max > 0, $max - .02, null);
+ }
+ 
+ 
+ @mixin media-breakpoint-down($name, $breakpoints: $grid-breakpoints) {
+	$max: breakpoint-max($name, $breakpoints);
+	@if $max {
+	  @media (max-width: $max) {
+		 @content;
+	  }
+	} @else {
+	  @content;
+	}
+ }
+ 
+ 
+ @mixin media-breakpoint-up($name, $breakpoints: $grid-breakpoints) {
+	$min: breakpoint-max($name, $breakpoints);
+	@if $min {
+	  @media (min-width: $min) {
+		 @content;
+	  }
+	} @else {
+	  @content;
+	}
+ }
+ 
+ @function breakpoint-infix($name, $breakpoints: $grid-breakpoints) {
+	@return if(breakpoint-min($name, $breakpoints) == null, "", "-#{$name}");
+ }
+ 
+ 
+// @mixin genFontSize() {
+// @each $breakpoint in map-keys($grid-breakpoints) {
+//	@include media-breakpoint-down($breakpoint) {
+//	  $infix: breakpoint-infix($breakpoint, $grid-breakpoints);
+	  
+//	 @each $font, $value in $font-sizes {
+//	  .fs#{$infix}-#{$font}{
+//		 font-size: $value;
+//	  }
+//	}
+//	}
+// }
+// }
+ 
+
+// END BOOTSTRAP MIXINS //
+
+
+
+@mixin genFontSize() {
+	@each $breakpoint in map-keys($grid-breakpoints) {
+		@include media-breakpoint-up($breakpoint) {
+			$infix: breakpoint-infix($breakpoint, $grid-breakpoints);
+
+			@each $font, $value in $font-sizes {
+				.fs#{$infix}-#{$font}{
+					font-size: $value;
+				}
+			}
+		}
+	}
+}
+ 

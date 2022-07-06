@@ -1,0 +1,54 @@
+url = "/projects"
+layout = "master"
+title = "Проект"
+==
+<?php
+function onInit()
+{
+
+    $this['page_css'] = mix('css/list.css', 'themes/project/assets');
+    $this['page_js'] = mix('js/list.js', 'themes/project/assets');
+    $this['obProjects'] = $obProjects = \Zen\TrMaker\Models\Project::where('active',1)->get();
+
+}
+?>
+==
+{% put page_style %}
+<link rel="stylesheet" href="{{ page_css }}">
+{% endput %}
+{% put page_script %}
+<script src="{{ page_js }}"></script>
+{% endput %}
+
+
+{% set arSEOParams = {'document': iActiveCategory} %}
+
+{% put seo_tags %}
+    {% component 'SeoToolbox' model=iActiveCategory params=arSEOParams %}
+{% endput %}
+
+{% put page_class %} light-theme {% endput %}
+
+<div class="container">
+    {% partial 'svg/time' %}
+    <section class="content mb-4 mx-4 list-project">
+        {% if obProjects.count %}
+            <h1>Список проектов:</h1>
+            <div class="lists">
+                {% for project in obProjects %}
+                    <a class="list-item" href="/projects/{{ project.id }}">
+                        <span>#{{ project.id }}</span>
+                        <span>| {{ project.name }}</span>
+                        <span>| Страниц: {{ project.getCountPage }}</span>
+                        <span>| Создан: {{ project.created_at|date('d F Y') }}</span>
+                    </a>
+                {% endfor %}
+            </ul>
+        {% else %}
+            <h1>Проекты не найдены или неактивны!</h1>
+        {% endif %}
+
+    </section>
+
+
+</div>

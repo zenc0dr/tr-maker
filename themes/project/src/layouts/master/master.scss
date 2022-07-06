@@ -1,0 +1,34 @@
+
+/*variables and mixin */
+@import "@src/components/!common/_";
+
+
+/*libs*/
+@import '~bootstrap/scss/bootstrap';
+@import '~bootstrap-icons/font/bootstrap-icons.css';
+@import "@src/scss/fonts.scss";
+
+
+/*components*/
+@import "@src/components/header/_";
+@import "@src/components/footer/_";
+
+
+/* rem(размер шрифта в пх) при сборке получаем в rem*/
+/* lh(размер шрифта в пх, размер line-height в пх) при сборке получаем в rem*/
+
+* {
+  margin: 0;
+  padding: 0;
+}
+html,
+body {
+  height: 100%;
+}
+
+main {
+    height: 100%;
+
+    display: flex;
+    flex-direction: column;
+}

@@ -1,0 +1,16 @@
+table {
+   margin-bottom: 20px;
+   tr {
+      &:first-child {
+         td {
+            background-color: #f3f3f3;
+            font-weight: bold;
+         }
+      }
+      td {
+         border: 1px solid #cacaca;
+         padding: 5px;
+      }
+   }
+   
+}

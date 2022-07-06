@@ -1,0 +1,25 @@
+@import '@src/components/svg/time.scss';
+
+.list-project {
+    h1 {
+        font-size: 2rem;
+        text-align: center;
+    }
+    .lists {
+        margin: 2rem auto;
+        border-radius: 4px;
+        background-color: rgba(202,202,202,0.1);
+        width: 580px;
+        display: flex;
+        flex-direction: column;
+        .list-item {
+            padding: 1rem 2rem;
+            color: #000;
+            text-decoration: none;
+            &:hover {
+                background-color: rgba(202,202,202,0.6);;
+            }
+
+        }
+    }
+}

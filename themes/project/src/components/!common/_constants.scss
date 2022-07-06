@@ -1,0 +1,102 @@
+$baseFontSize		: 16px;
+$wrapperPaddingVal	: 17 !default;
+$wrapperPadding		: rem( $wrapperPaddingVal );
+$baseFontWeight		: 400;
+$baseLineHeight		: 1.3;
+
+$assetsPath			: '' !default;
+$componentsImgPath	: '/themes/azimut-tur-pro/assets/images/components' !default;
+$transitionTime		: .3s;
+
+// font-size, line-height
+
+
+$containers: (
+	'container-1' :  1160px,
+	'container-2' :  1440px,
+);
+
+$screens : (
+  'xs': 0px,
+  'sm': 576px,
+  'md': 768px,
+  'lg': 992px,
+  'xl': 1200px,
+  'xxl': 1400px
+) !default;
+
+
+
+$grid-breakpoints: (
+  xs: 0,
+  sm: 576px,
+  md: 768px,
+  lg: 992px,
+  xl: 1200px,
+  xxl: 1400px
+) !default;
+
+
+// Переменные цветов
+// c-blue-100 bg-blue-100
+$defColors: (
+	'blue-100': rgba(54, 149, 231, 1),
+	'blue-200': rgba(30, 136, 229, 1),
+	'blue-300': rgba(26, 129, 219, 1),
+	'blue-400': rgba(6,76,137),
+
+	'red-100': rgba(230, 76, 79, 1),
+	'red-200': rgba(225, 44, 46, 1),
+	'red-300': rgba(224, 41, 44, 1),
+	'red-400': rgba(214, 31, 34, 1),
+
+	'gold-100': rgba(255, 191, 31, 1),
+	'gold-200': rgba(252, 181, 0, 1),
+	'gold-300': rgba(245, 175, 0, 1),
+
+	'primary-100': rgb(255,255,255),
+	'primary-200': rgb(0,0,0),
+	
+	'gray-100': rgba(226, 232, 240, 1),
+	'gray-200': rgba(160, 174, 192, 1),
+	'gray-250': rgba(72,92,117,1),	
+	'gray-300': rgba(45, 55, 72, 1),
+
+	's-request': rgb(249,249,212),
+	's-actual': rgb(155,219,174),
+	's-select': rgb(231,76,59),
+
+	'social-vk': rgb(0, 119, 255),
+	'social-ok': rgb(238,138,8),
+	'social-fb': rgb(38, 119, 242),
+	'social-mm': rgb(41,141,226),
+	'social-twitter': rgb(0, 146, 242)
+);
+
+
+
+$colors: ();
+
+// class ff-def  ff-roboto
+$fonts: (
+	def				: ('Open sans', sans-serif),
+	roboto				: ('Roboto', sans-serif)
+);
+
+// class fs-def fs-h1 fs-h2 и т.д 
+// указываем в пикселях
+$font-sizes: (
+	ss: rem(12),
+	s: rem(14),
+	def: rem(16),
+	h0: rem(26),
+	h1: rem(24),
+	h2: rem(22),
+	h20: rem(20),
+	h3: rem(18)
+);
+
+$z-layers: (
+	btn-slider	: 1,
+);
+

@@ -1,0 +1,114 @@
+url = "/projects/:project*/:slug?"
+layout = "master"
+title = "Проект"
+
+[DocProject]
+slug = "{{ :project }}"
+slug_required = 1
+smart_url_check = 0
+skip_error = 0
+
+[DocPage]
+slug = "{{ :slug }}"
+slug_required = 0
+smart_url_check = 1
+skip_error = 1
+
+==
+<?php
+function onInit()
+{
+
+    $obDocProject = $this->DocProject->get();
+    $obDocPage = $this->DocPage->get();
+
+    if (!$obDocProject and !$obDocPage) {
+        return $this->DocProject->getErrorResponse();
+    }
+
+    $this['obPages'] = \Zen\TrMaker\Models\Page::where([['active',1],['project_id', $obDocProject->id]])->get();
+
+    $this['obDocProject'] = $obDocProject;
+    $this['page_css'] = mix('css/project.css', 'themes/project/assets');
+    $this['page_js'] = mix('js/project.js', 'themes/project/assets');
+
+}
+?>
+==
+{% put page_style %}
+<link rel="stylesheet" href="{{ page_css }}">
+{% endput %}
+{% put page_script %}
+<script src="{{ page_js }}"></script>
+{% endput %}
+
+
+{% set arSEOParams = {'document': iActiveCategory} %}
+
+{% put seo_tags %}
+    {% component 'SeoToolbox' model=iActiveCategory params=arSEOParams %}
+{% endput %}
+
+<div class="container">
+
+    <section class="content mb-4">
+        <div class="row">
+            <div class="col-4">
+                <main class="d-flex flex-nowrap">
+                    <h1 class="visually-hidden">Страницы</h1>
+
+                    <div class="d-flex flex-column align-items-stretch flex-shrink-0 bg-white" style="width: 380px;">
+                        <a href="/" class="d-flex align-items-center flex-shrink-0 p-3 link-dark text-decoration-none border-bottom">
+                            <span class="fs-5 fw-semibold">Страницы</span>
+                        </a>
+                        <div class="list-group list-group-flush border-bottom scrollarea">
+                            {% for obPage in obPages %}
+                            <a href="/projects/{{obDocProject.id}}/{{obPage.id}}" class="list-group-item list-group-item-action {{ (obPage.id == iActiveCategory.id) ? 'active':'' }} py-3 lh-sm" aria-current="true">
+                                <div class="d-flex w-100 align-items-center justify-content-between">
+                                    <strong class="mb-1">{{ obPage.name }}</strong>
+                                </div>
+                                <div class="col-10 mb-1 small">{{ obPage.description }}</div>
+                            </a>
+                            {% endfor %}
+                        </div>
+                    </div>
+
+                    <div class="b-example-divider b-example-vr"></div>
+                </main>
+            </div>
+            <div class="col-8">
+                {% if obActiveContents|length %}
+
+                    {% for obItem in obActiveContents %}
+                        <h3 class="">{{ obItem.name }}</h3>
+                        <div>{{ obItem.description|raw }}</div>
+
+                        <div class="tab-content mt-3" id="myTabContent">
+                            {% if obItem.data[0].text %}
+                            <div class="mt-3">
+                                <p>{{obItem.data[0].text}}</p>
+                            </div>
+                            {% endif %}
+
+                            {% if obItem.data[0].code %}
+                            <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
+                            <pre><code class="language-json">{{ obItem.data[0].code|raw }}</code></pre>
+                            </div>
+                            {% endif %}
+
+                            {% if obItem.data[0].image|length %}
+                            <div class="mt-3">
+                                <img src="{{ obItem.data[0].image|media }}" width='100%' alt="image">
+                            </div>
+                            {% endif %}
+                        </div>
+                    {% endfor %}
+                {% else %}
+                    <h3>Записей нет!</h3>
+                {% endif %}
+            </div>
+        </div>
+    </section>
+
+
+</div>

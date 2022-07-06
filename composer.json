@@ -11,7 +11,8 @@
         "october/all": "^3.0",
         "rainlab/builder-plugin": "^1.1",
         "zen/robots-plugin": "^1.0",
-        "romanov/clearcachewidget-plugin": "^1.3"
+        "romanov/clearcachewidget-plugin": "^1.3",
+        "lovata/toolbox-plugin": "^1.34"
     },
     "require-dev": {
         "phpunit/phpunit": "^8.5|^9.0"

@@ -21,13 +21,6 @@ fields:
         showSearch: true
         span: auto
         type: dropdown
-    created_at:
-        label: 'Дата создания'
-        mode: datetime
-        span: auto
-        readOnly: 1
-        type: datepicker
-        comment: 'создается автоматически'
 tabs:
     fields:
         description:

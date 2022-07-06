@@ -1,0 +1,133 @@
+//@include h1();
+@mixin h1 {
+    font-weight: 700;
+    font-size: rem(28);
+    line-height: lh(28,33);
+    text-transform: uppercase;
+
+	@include min( md ) {
+		font-size: rem(52);
+		line-height: lh(52, 61);
+	}
+}
+
+//@include h2();
+@mixin h2 {
+    font-weight: 700;
+    font-size: rem(28);
+    line-height: lh(28,34);
+    text-transform: initial;
+
+	@include min( md ) {
+		font-size: rem(44);
+		line-height: lh(44,50);
+	}
+}
+
+//@include h3();
+@mixin h3 {
+    font-weight: 700;
+    font-size: rem(25);
+    line-height: 1;
+    text-transform: initial;
+}
+
+//@include h4();
+@mixin h4 {
+    font-weight: 700;
+    font-size: rem(20);
+    line-height: lh(20,23);
+    text-transform: initial;
+}
+
+//@include h5();
+@mixin h5 {
+    font-weight: 700;
+    font-size: rem(12);
+    line-height: lh(12,13);
+
+	@include min( md ) {
+		font-weight: 700;
+		font-size: rem(18);
+		line-height: lh(18,20);
+	}
+}
+
+//@include h6();
+@mixin h6 {
+    font-weight: 700;
+    font-size: rem(15);
+    line-height: rem(15,18);
+    text-transform: uppercase;
+
+	@include min( md ) {
+		font-size: rem(16);
+		line-height: lh(16,19);
+		text-transform: uppercase;
+	}
+}
+
+//@include body1();
+@mixin body1 {
+	font-size: rem(13);
+	line-height: lh(13,18);
+
+	@include min( phone ) {
+		font-size: rem(14);
+		line-height: lh(14,20);
+	}
+}
+
+//@include body3();
+@mixin body3 {
+	font-weight: 500;
+	font-size: rem(13);
+	line-height: lh(13,18);
+
+	@include min( phone ) {
+		font-weight: 500;
+		font-size: rem(16);
+		line-height: lh(16,22);
+	}
+}
+
+//@include link();
+@mixin link {
+	font-size: rem(12);
+	font-weight: 500;
+	line-height: lh(12,14);
+	letter-spacing: 0.065em;
+	text-decoration: underline;
+	color: inherit;
+	transition: color .3s linear;
+	cursor: pointer;
+
+	&:hover {
+		color: color( accent );
+	}
+
+	@include min( phone ) {
+		font-size: rem(14);
+		line-height: lh( 14, 20 );
+	}
+}
+
+@mixin large-link {
+	font-size: rem(18);
+	font-weight: 600;
+	line-height: lh(18,21);
+	letter-spacing: 0.065em;
+	text-decoration: underline;
+	color: inherit;
+	transition: color .3s linear;
+	cursor: pointer;
+
+	&:hover {
+		color: color( accent );
+	}
+
+	@include min( phone ) {
+		font-size: rem(20);
+		line-height: lh( 20, 23 );
+	}
+}

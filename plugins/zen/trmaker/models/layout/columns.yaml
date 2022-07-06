@@ -17,7 +17,9 @@ columns:
         label: Активность
         type: partial
         sortable: true
-    created_at:
-        label: 'Дата создания'
-        type: datetime
+    project_id:
+        label: Проект
+        type: text
         sortable: true
+        relation: project
+        valueFrom: name

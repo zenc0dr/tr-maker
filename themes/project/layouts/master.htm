@@ -1,0 +1,55 @@
+[viewBag]
+==
+<?php
+function onInit()
+{
+    $this['layout_css'] = mix('css/master.css', 'themes/project/assets');
+    $this['layout_js'] = mix('js/master.js', 'themes/project/assets');
+    $this['path_manifest_js'] = mix('js/manifest.js', 'themes/project/assets');
+    $this['path_vendor_js'] = mix('js/vendor.js', 'themes/project/assets');
+}
+?>
+==
+<!--
+==== hand crafted for ====
+▄▀▀▄ ▄▀▀ ▀█▀ ▄▀▀▄ █▀▄ █▀▀ █▀▄ -▄▀▀ ▀█▀ █░░█ █▀▄ ▀█▀ ▄▀▀▄
+█░░█ █░░ ░█░ █░░█ █▀▄ █▀▀ █▀▄ -░▀▄ ░█░ █░░█ █░█ ░█░ █░░█
+░▀▀░ ░▀▀ ░▀░ ░▀▀░ ▀▀░ ▀▀▀ ▀░▀ -▀▀░ ░▀░ ░▀▀░ ▀▀░ ▀▀▀ ░▀▀░
+=======================================
+-->
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+    {{ SeoToolbox.getHeadBegin()|raw }}
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    {% partial 'favicons/favicons' %}
+    {% placeholder seo_tags default %}
+    {% component 'SeoToolbox' %}
+    {% endplaceholder %}
+    <link rel="stylesheet" href="{{ layout_css }}">
+    {% placeholder page_style %}
+    {% styles %}
+    {{ SeoToolbox.getHeadEnd()|raw }}
+</head>
+
+<body>
+    {{ SeoToolbox.getBodyBegin()|raw }}
+
+    <main class="{% placeholder page_class %}">
+        {% partial 'header/header' %}
+        {% page %}
+        {% partial 'footer/footer' class="mt-4 " %}
+    </main>
+
+    <script src="{{ path_manifest_js }}"></script>
+    <script src="{{ path_vendor_js }}"></script>
+    <script src="{{ layout_js }}"></script>
+    {% scripts %}
+    {% placeholder page_script %}
+    {{ SeoToolbox.getBodyEnd()|raw }}
+</body>
+
+</html>

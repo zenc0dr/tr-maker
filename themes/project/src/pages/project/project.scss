@@ -1,0 +1,22 @@
+// general variables (подключаем на любой странице)
+@import "@src/components/!common/_.scss";
+@import '@src/scss/hightlight.min.css';
+@import '@components/tables/_';
+.nav-masthead .nav-link {
+   color: rgba(0, 0, 0, .5);
+   border-bottom: .25rem solid transparent;
+}
+
+.nav-masthead .nav-link:hover,
+.nav-masthead .nav-link:focus {
+   border-bottom-color: rgba(255, 255, 255, .25);
+}
+
+.nav-masthead .nav-link+.nav-link {
+   margin-left: 1rem;
+}
+
+.nav-masthead .active {
+   color: #000;
+   border-bottom-color: #000;
+}

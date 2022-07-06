@@ -28,3 +28,9 @@ columns:
         type: partial
         searchable: true
         sortable: true
+    project_id:
+        label: ПРоект
+        type: text
+        sortable: true
+        relation: project
+        valueFrom: name

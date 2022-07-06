@@ -8,3 +8,12 @@ columns:
         type: text
         searchable: true
         sortable: true
+    created_at:
+        label: 'Дата создания'
+        type: date
+        searchable: true
+        sortable: true
+    active:
+        label: Активность
+        type: partial
+        sortable: true

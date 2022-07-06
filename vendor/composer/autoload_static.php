@@ -129,6 +129,10 @@ class ComposerStaticInitc582b812d8602d82519db4afa2e8040b
             'Laravel\\Tinker\\' => 15,
             'Laravel\\SerializableClosure\\' => 28,
         ),
+        'K' => 
+        array (
+            'Kharanenka\\Helper\\' => 18,
+        ),
         'J' => 
         array (
             'JsonSchema\\' => 11,
@@ -433,6 +437,10 @@ class ComposerStaticInitc582b812d8602d82519db4afa2e8040b
         array (
             0 => __DIR__ . '/..' . '/laravel/serializable-closure/src',
         ),
+        'Kharanenka\\Helper\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/kharanenka/php-result-store/src/Kharanenka/Helper',
+        ),
         'JsonSchema\\' => 
         array (
             0 => __DIR__ . '/..' . '/justinrainbow/json-schema/src/JsonSchema',
@@ -569,6 +577,30 @@ class ComposerStaticInitc582b812d8602d82519db4afa2e8040b
                 0 => __DIR__ . '/..' . '/wikimedia/less.php/lib',
             ),
         ),
+        'K' => 
+        array (
+            'Kharanenka\\Scope\\' => 
+            array (
+                0 => __DIR__ . '/..' . '/kharanenka/laravel-scope-user-belongs-to/src',
+                1 => __DIR__ . '/..' . '/kharanenka/laravel-scope-type/src',
+                2 => __DIR__ . '/..' . '/kharanenka/laravel-scope-slug/src',
+                3 => __DIR__ . '/..' . '/kharanenka/laravel-scope-moderation/src',
+                4 => __DIR__ . '/..' . '/kharanenka/laravel-scope-hidden/src',
+                5 => __DIR__ . '/..' . '/kharanenka/laravel-scope-name/src',
+                6 => __DIR__ . '/..' . '/kharanenka/laravel-scope-external-id/src',
+                7 => __DIR__ . '/..' . '/kharanenka/laravel-scope-date/src',
+                8 => __DIR__ . '/..' . '/kharanenka/laravel-scope-code/src',
+                9 => __DIR__ . '/..' . '/kharanenka/laravel-scope-category-belongs-to/src',
+                10 => __DIR__ . '/..' . '/kharanenka/laravel-scope-active/src',
+            ),
+            'Kharanenka\\Helper\\' => 
+            array (
+                0 => __DIR__ . '/..' . '/kharanenka/oc-data-file-model/src',
+                1 => __DIR__ . '/..' . '/kharanenka/php-pagination/src',
+                2 => __DIR__ . '/..' . '/kharanenka/oc-pagination/src',
+                3 => __DIR__ . '/..' . '/kharanenka/laravel-cache-helper/src',
+            ),
+        ),
     );
 
     public static $classMap = array (
@@ -607,6 +639,21 @@ class ComposerStaticInitc582b812d8602d82519db4afa2e8040b
         'JSMin' => __DIR__ . '/..' . '/linkorb/jsmin-php/src/jsmin-1.1.1.php',
         'JSMinException' => __DIR__ . '/..' . '/linkorb/jsmin-php/src/jsmin-1.1.1.php',
         'JsonException' => __DIR__ . '/..' . '/symfony/polyfill-php73/Resources/stubs/JsonException.php',
+        'Kharanenka\\Helper\\CCache' => __DIR__ . '/..' . '/kharanenka/laravel-cache-helper/src/Kharanenka/Helper/CCache.php',
+        'Kharanenka\\Helper\\DataFileModel' => __DIR__ . '/..' . '/kharanenka/oc-data-file-model/src/Kharanenka/Helper/DataFileModel.php',
+        'Kharanenka\\Helper\\Pagination' => __DIR__ . '/..' . '/kharanenka/oc-pagination/src/Kharanenka/Helper/Pagination.php',
+        'Kharanenka\\Helper\\PaginationHelper' => __DIR__ . '/..' . '/kharanenka/php-pagination/src/Kharanenka/Helper/PaginationHelper.php',
+        'Kharanenka\\Scope\\ActiveField' => __DIR__ . '/..' . '/kharanenka/laravel-scope-active/src/Kharanenka/Scope/ActiveField.php',
+        'Kharanenka\\Scope\\CategoryBelongsTo' => __DIR__ . '/..' . '/kharanenka/laravel-scope-category-belongs-to/src/Kharanenka/Scope/CategoryBelongsTo.php',
+        'Kharanenka\\Scope\\CodeField' => __DIR__ . '/..' . '/kharanenka/laravel-scope-code/src/Kharanenka/Scope/CodeField.php',
+        'Kharanenka\\Scope\\DateField' => __DIR__ . '/..' . '/kharanenka/laravel-scope-date/src/Kharanenka/Scope/DateField.php',
+        'Kharanenka\\Scope\\ExternalIDField' => __DIR__ . '/..' . '/kharanenka/laravel-scope-external-id/src/Kharanenka/Scope/ExternalIDField.php',
+        'Kharanenka\\Scope\\HiddenField' => __DIR__ . '/..' . '/kharanenka/laravel-scope-hidden/src/Kharanenka/Scope/HiddenField.php',
+        'Kharanenka\\Scope\\ModerationField' => __DIR__ . '/..' . '/kharanenka/laravel-scope-moderation/src/Kharanenka/Scope/ModerationField.php',
+        'Kharanenka\\Scope\\NameField' => __DIR__ . '/..' . '/kharanenka/laravel-scope-name/src/Kharanenka/Scope/NameField.php',
+        'Kharanenka\\Scope\\SlugField' => __DIR__ . '/..' . '/kharanenka/laravel-scope-slug/src/Kharanenka/Scope/SlugField.php',
+        'Kharanenka\\Scope\\TypeField' => __DIR__ . '/..' . '/kharanenka/laravel-scope-type/src/Kharanenka/Scope/TypeField.php',
+        'Kharanenka\\Scope\\UserBelongsTo' => __DIR__ . '/..' . '/kharanenka/laravel-scope-user-belongs-to/src/Kharanenka/Scope/UserBelongsTo.php',
         'Lang' => __DIR__ . '/..' . '/october/rain/helpers/Lang.php',
         'Log' => __DIR__ . '/..' . '/october/rain/helpers/Log.php',
         'Mail' => __DIR__ . '/..' . '/october/rain/helpers/Mail.php',

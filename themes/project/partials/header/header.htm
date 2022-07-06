@@ -1,0 +1,19 @@
+{% set urls = {
+        'Главная':'/',
+        'Проекты':'/projects'
+    }
+%}
+<header class="mb-4 d-flex ">
+    <div class="container">
+        <div class="d-flex w-100 justify-content-between py-2">
+            <h3 class="float-md-start mb-0 px-3">Конструктор ТЗ</h3>
+            {% if urls|length %}
+            <nav class="nav nav-masthead justify-content-center float-md-end">
+                {% for name,url in urls %}
+                    <a class="nav-link fw-bold py-1 px-0 {{(this.page.url|slice(0,4) == url|slice(0,4)) ? 'active' : '' }}"  href="{{url}}">{{name}}</a>
+                {% endfor %}
+            </nav>
+            {% endif %}
+        </div>
+    </div>
+</header>
