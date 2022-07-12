@@ -27,17 +27,17 @@ class FallbackField extends ContentFieldBase
      */
     public function defineListColumn(ListElement $list, $context = null)
     {
-        if ($this->column) {
+        if (is_array($this->column)) {
             $list->defineColumn($this->fieldName, $this->label)->useConfig($this->column);
         }
     }
 
     /**
-     * defineFilterScope
+     * defineFilterScope will define how a field is displayed in a filter.
      */
     public function defineFilterScope(FilterElement $filter, $context = null)
     {
-        if ($this->scope) {
+        if (is_array($this->scope)) {
             $filter->defineScope($this->fieldName, $this->label)->useConfig($this->scope);
         }
     }

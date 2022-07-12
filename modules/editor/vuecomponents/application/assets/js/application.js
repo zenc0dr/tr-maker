@@ -56,6 +56,7 @@ Vue.component('editor-component-application', {
                         resolve(data);
                     },
                     error: function(data, statusCode, xhr) {
+                        xhr.responseJSON = data;
                         reject(xhr);
                     }
                 });

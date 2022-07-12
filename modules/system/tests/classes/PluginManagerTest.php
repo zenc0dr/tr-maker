@@ -115,15 +115,15 @@ class PluginManagerTest extends TestCase
         $result = $this->manager->getPluginNamespaces();
 
         $this->assertCount(9, $result);
-        $this->assertArrayHasKey('October\Noupdates', $result);
-        $this->assertArrayHasKey('October\Sample', $result);
-        $this->assertArrayHasKey('October\Tester', $result);
-        $this->assertArrayHasKey('Database\Tester', $result);
-        $this->assertArrayHasKey('Testvendor\Test', $result);
-        $this->assertArrayHasKey('Dependencytest\Found', $result);
-        $this->assertArrayHasKey('Dependencytest\Notfound', $result);
-        $this->assertArrayHasKey('Dependencytest\Wrongcase', $result);
-        $this->assertArrayHasKey('Dependencytest\Dependency', $result);
+        $this->assertArrayHasKey('october\noupdates', $result);
+        $this->assertArrayHasKey('october\sample', $result);
+        $this->assertArrayHasKey('october\tester', $result);
+        $this->assertArrayHasKey('database\tester', $result);
+        $this->assertArrayHasKey('testvendor\test', $result);
+        $this->assertArrayHasKey('dependencytest\found', $result);
+        $this->assertArrayHasKey('dependencytest\notfound', $result);
+        $this->assertArrayHasKey('dependencytest\wrongcase', $result);
+        $this->assertArrayHasKey('dependencytest\dependency', $result);
     }
 
     public function testGetVendorAndPluginNames()

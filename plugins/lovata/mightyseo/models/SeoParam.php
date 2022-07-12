@@ -135,7 +135,7 @@ class SeoParam extends Model
         }
 
         //Remove pages with SEO data
-        $arPageList = self::whereNotNull('page_id')->lists('page_id');
+        $arPageList = self::whereNotNull('page_id')->pluck('page_id')->all();
         if (empty($arPageList)) {
             return $arResult;
         }

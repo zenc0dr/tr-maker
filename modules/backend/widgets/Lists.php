@@ -627,7 +627,7 @@ class Lists extends WidgetBase implements ListElement
         $currentPageNumber = intval($currentPageNumber);
 
         if ($currentPageNumber > 1) {
-            $count = $query->count();
+            $count = $query->getQuery()->getCountForPagination();
 
             // If the current page number is higher than the amount of available pages, go to the last available page
             if ($count <= (($currentPageNumber - 1) * $this->recordsPerPage)) {

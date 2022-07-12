@@ -15,7 +15,7 @@
         <div class="modal-body">
 
             <div class="form-group text-field span-full">
-                <label for="Form-ThemeDuplicate-newDirName">
+                <label class="form-label" for="Form-ThemeDuplicate-newDirName">
                     <?= e(trans('cms::lang.theme.new_directory_name_label')) ?>
                 </label>
                 <input

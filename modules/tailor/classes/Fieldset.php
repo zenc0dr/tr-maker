@@ -48,7 +48,9 @@ class Fieldset extends FieldsetDefinition
     public function defineAllListColumns(ListElement $list, $context = null): void
     {
         foreach ($this->getAllFields() as $field) {
-            $field->defineListColumn($list, $context);
+            if ($field->column !== false) {
+                $field->defineListColumn($list, $context);
+            }
         }
     }
 
@@ -58,7 +60,9 @@ class Fieldset extends FieldsetDefinition
     public function defineAllFilterScopes(FilterElement $filter, $context = null): void
     {
         foreach ($this->getAllFields() as $field) {
-            $field->defineFilterScope($filter, $context);
+            if ($field->scope !== false) {
+                $field->defineFilterScope($filter, $context);
+            }
         }
     }
 

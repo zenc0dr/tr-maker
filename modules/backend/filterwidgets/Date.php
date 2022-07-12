@@ -223,10 +223,17 @@ class Date extends FilterWidgetBase
     public function getConditionLang($condition)
     {
         switch ($condition) {
-            case self::CONDITION_EQUALS: return __('is equal to');
-            case self::CONDITION_BETWEEN: return __('is between');
-            case self::CONDITION_BEFORE: return __('is before');
-            case self::CONDITION_AFTER: return __('is after');
+            case self::CONDITION_EQUALS:
+                return __('is equal to');
+
+            case self::CONDITION_BETWEEN:
+                return __('is between');
+
+            case self::CONDITION_BEFORE:
+                return __('is before');
+
+            case self::CONDITION_AFTER:
+                return __('is after');
         }
     }
 }

@@ -30,13 +30,13 @@ class Page extends Model
 
     public $belongsTo = [
         'parent' => [Page::class],
-        'project' => [Project::class]
+        'layout' => [Layout::class]
     ];
 
-    public function getProjectIdOptions()
+    public function getLayoutIdOptions()
     {
-        if (Project::count()) {
-            return [0 => 'Нет'] + Project::lists('name', 'id', '- ');
+        if (Layout::count()) {
+            return [0 => 'Нет'] + Layout::lists('name', 'id', '- ');
         }
         return [0 => 'Нет'];
     }

@@ -208,7 +208,6 @@ class ServiceProvider extends ModuleServiceProvider
             \Backend\FormWidgets\FileUpload::class => 'fileupload',
             \Backend\FormWidgets\Relation::class => 'relation',
             \Backend\FormWidgets\DatePicker::class => 'datepicker',
-            \Backend\FormWidgets\TimePicker::class => 'timepicker',
             \Backend\FormWidgets\ColorPicker::class => 'colorpicker',
             \Backend\FormWidgets\DataTable::class => 'datatable',
             \Backend\FormWidgets\RecordFinder::class => 'recordfinder',
@@ -306,8 +305,8 @@ class ServiceProvider extends ModuleServiceProvider
                 'context' => 'mysettings'
             ],
             'access_logs' => [
-                'label' => 'backend::lang.access_log.menu_label',
-                'description' => 'backend::lang.access_log.menu_description',
+                'label' => 'Access Log',
+                'description' => 'View a list of successful back-end user sign ins.',
                 'category' => SettingsManager::CATEGORY_LOGS,
                 'icon' => 'octo-icon-lock',
                 'url' => Backend::url('backend/accesslogs'),

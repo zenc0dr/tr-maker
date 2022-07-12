@@ -167,10 +167,17 @@ class Number extends FilterWidgetBase
     public function getConditionLang($condition)
     {
         switch ($condition) {
-            case self::CONDITION_EQUALS: return __('is equal to');
-            case self::CONDITION_BETWEEN: return __('is between');
-            case self::CONDITION_GREATER: return __('is greater than');
-            case self::CONDITION_LESSER: return __('is less than');
+            case self::CONDITION_EQUALS:
+                return __('is equal to');
+
+            case self::CONDITION_BETWEEN:
+                return __('is between');
+
+            case self::CONDITION_GREATER:
+                return __('is greater than');
+
+            case self::CONDITION_LESSER:
+                return __('is less than');
         }
     }
 }

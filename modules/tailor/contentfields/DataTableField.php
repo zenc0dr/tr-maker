@@ -1,6 +1,7 @@
 <?php namespace Tailor\ContentFields;
 
 use October\Contracts\Element\FormElement;
+use October\Contracts\Element\ListElement;
 
 /**
  * DataTableField
@@ -10,14 +11,6 @@ use October\Contracts\Element\FormElement;
  */
 class DataTableField extends FallbackField
 {
-    /**
-     * defineFormField will define how a field is displayed in a form.
-     */
-    public function defineFormField(FormElement $form, $context = null)
-    {
-        $form->addFormField($this->fieldName, $this->label)->useConfig($this->config);
-    }
-
     /**
      * extendModelObject will extend the record model.
      */

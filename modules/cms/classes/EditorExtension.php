@@ -15,12 +15,6 @@ use Exception;
  */
 class EditorExtension extends ExtensionBase
 {
-    const DOCUMENT_TYPE_PAGE = 'cms-page';
-    const DOCUMENT_TYPE_LAYOUT = 'cms-layout';
-    const DOCUMENT_TYPE_PARTIAL = 'cms-partial';
-    const DOCUMENT_TYPE_CONTENT = 'cms-content';
-    const DOCUMENT_TYPE_ASSET = 'cms-asset';
-
     use \Cms\Traits\EditorExtensionState;
     use \Cms\Traits\EditorExtensionAssetsState;
     use \Cms\Traits\EditorComponentListLoader;
@@ -30,6 +24,12 @@ class EditorExtension extends ExtensionBase
     use \Cms\Traits\EditorExtensionThemesState;
     use \Cms\Traits\EditorExtensionThemeCrud;
     use \Cms\Traits\EditorExtensionExtensibility;
+
+    const DOCUMENT_TYPE_PAGE = 'cms-page';
+    const DOCUMENT_TYPE_LAYOUT = 'cms-layout';
+    const DOCUMENT_TYPE_PARTIAL = 'cms-partial';
+    const DOCUMENT_TYPE_CONTENT = 'cms-content';
+    const DOCUMENT_TYPE_ASSET = 'cms-asset';
 
     const ICON_COLOR_PAGE = '#6A6CF7';
     const ICON_COLOR_PARTIAL = '#9ACD43';
@@ -45,7 +45,10 @@ class EditorExtension extends ExtensionBase
         EditorExtension::DOCUMENT_TYPE_ASSET => ['editor.cms_assets']
     ];
 
-    private $cachedEditTheme = false;
+    /**
+     * @var bool cachedEditTheme
+     */
+    protected $cachedEditTheme = false;
 
     /**
      * getNamespace returns unique extension namespace
@@ -288,7 +291,8 @@ class EditorExtension extends ExtensionBase
                 return $this->cachedEditTheme = $editTheme;
             }
         }
-        catch (Exception $ex) {}
+        catch (Exception $ex) {
+        }
 
         // Locate active theme
         try {
@@ -296,7 +300,8 @@ class EditorExtension extends ExtensionBase
                 return $this->cachedEditTheme = $activeTheme;
             }
         }
-        catch (Exception $ex) {}
+        catch (Exception $ex) {
+        }
 
         // Use first theme
         $themes = Theme::all();

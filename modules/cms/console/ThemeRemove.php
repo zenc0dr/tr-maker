@@ -55,13 +55,14 @@ class ThemeRemove extends Command
 
         // Remove via composer
         if ($composerCode = $manager->getComposerCode($name)) {
-
             // Composer remove
             $this->comment("Executing: composer remove {$composerCode}");
             $this->line('');
 
             $composer = new ComposerProcess;
-            $composer->setCallback(function($message) { echo $message; });
+            $composer->setCallback(function($message) {
+                echo $message;
+            });
             $composer->remove($composerCode);
 
             if ($composer->lastExitCode() !== 0) {

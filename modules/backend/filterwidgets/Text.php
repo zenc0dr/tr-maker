@@ -114,8 +114,11 @@ class Text extends FilterWidgetBase
     public function getConditionLang($condition)
     {
         switch ($condition) {
-            case self::CONDITION_EQUALS: return __('is equal to');
-            case self::CONDITION_CONTAINS: return __('contains');
+            case self::CONDITION_EQUALS:
+                return __('is equal to');
+
+            case self::CONDITION_CONTAINS:
+                return __('contains');
         }
     }
 }

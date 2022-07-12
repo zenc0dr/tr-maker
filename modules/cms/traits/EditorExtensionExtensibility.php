@@ -78,7 +78,7 @@ trait EditorExtensionExtensibility
         });
 
         foreach ($dataHolder->buttons as &$buttonDefinition) {
-            if (!array_key_exists('useViewBag', $buttonDefinition) ) {
+            if (!array_key_exists('useViewBag', $buttonDefinition)) {
                 $buttonDefinition['useViewBag'] = true;
             }
 

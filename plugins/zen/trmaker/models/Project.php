@@ -18,7 +18,10 @@ class Project extends Model
     public $timestamps = true;
 
     public function getCountPage() {
-        return Page::where([['active',1],['project_id', $this->id]])->get()->count();
+        $layouts = Layout::where([['active',1],['project_id', $this->id]])->lists('id');
+        return Page::where('active',1)->whereIn('layout_id', $layouts)->get()->count();
     }
+
+
 
 }

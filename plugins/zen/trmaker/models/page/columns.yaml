@@ -28,9 +28,9 @@ columns:
         type: partial
         searchable: true
         sortable: true
-    project_id:
-        label: ПРоект
+    layout_id:
+        label: Шаблон
         type: text
         sortable: true
-        relation: project
+        relation: layout
         valueFrom: name

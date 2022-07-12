@@ -115,6 +115,14 @@ class PluginManager
     }
 
     /**
+     * unloadPlugins unloads all plugins: the negative of loadPlugins()
+     */
+    public function unloadPlugins()
+    {
+        $this->plugins = [];
+    }
+
+    /**
      * loadPlugin loads a single plugin in to the manager where a namespace is Acme\Blog
      * and the path is somewhere on the disk
      */
@@ -160,6 +168,18 @@ class PluginManager
     }
 
     /**
+     * registerFromProvider will ensure plugins are not forced on unit tests
+     */
+    public function registerFromProvider()
+    {
+        if ($this->app->runningUnitTests()) {
+            return;
+        }
+
+        $this->registerAll();
+    }
+
+    /**
      * registerAll runs the register() method on all plugins and can only be called once
      */
     public function registerAll($force = false)
@@ -173,15 +193,6 @@ class PluginManager
         }
 
         $this->registered = true;
-    }
-
-    /**
-     * unregisterAll unregisters all plugins: the negative of registerAll()
-     */
-    public function unregisterAll()
-    {
-        $this->registered = false;
-        $this->plugins = [];
     }
 
     /**
@@ -248,6 +259,18 @@ class PluginManager
         if (!$this->app->routesAreCached() && file_exists($routesFile)) {
             require $routesFile;
         }
+    }
+
+    /**
+     * bootFromProvider will ensure plugins are not forced on unit tests
+     */
+    public function bootFromProvider()
+    {
+        if ($this->app->runningUnitTests()) {
+            return;
+        }
+
+        $this->bootAll();
     }
 
     /**
@@ -412,7 +435,7 @@ class PluginManager
 
         foreach ($this->getVendorAndPluginNames() as $vendorName => $vendorList) {
             foreach ($vendorList as $pluginName => $pluginPath) {
-                $namespace = ucfirst($vendorName).'\\'.ucfirst($pluginName);
+                $namespace = strtolower($vendorName).'\\'.strtolower($pluginName);
                 $classNames[$namespace] = $pluginPath;
             }
         }
@@ -780,7 +803,6 @@ class PluginManager
             }
 
             foreach ($checklist as $code => $plugin) {
-
                 // Get dependencies and remove any aliens
                 $depends = $this->getDependencies($plugin) ?: [];
                 $depends = array_filter($depends, function ($pluginCode) {
@@ -864,5 +886,14 @@ class PluginManager
         $manager = UpdateManager::instance();
         $manager->rollbackPlugin($id);
         $manager->updatePlugin($id);
+    }
+
+    /**
+     * @deprecated use unloadPlugins instead
+     */
+    public function unregisterAll()
+    {
+        $this->registered = false;
+        $this->plugins = [];
     }
 }

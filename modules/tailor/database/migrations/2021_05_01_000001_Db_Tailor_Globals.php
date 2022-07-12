@@ -51,5 +51,5 @@ class DbTailorGlobals extends Migration
         Schema::dropIfExists('tailor_globals');
         Schema::dropIfExists('tailor_global_joins');
         Schema::dropIfExists('tailor_global_repeaters');
-     }
+    }
 }

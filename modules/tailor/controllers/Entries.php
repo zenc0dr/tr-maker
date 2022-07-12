@@ -146,7 +146,6 @@ class Entries extends WildcardController
             is_array($checkedIds) &&
             count($checkedIds)
         ) {
-
             foreach ($checkedIds as $modelId) {
                 if (!$model = $this->formFindModelObject($modelId)) {
                     continue;

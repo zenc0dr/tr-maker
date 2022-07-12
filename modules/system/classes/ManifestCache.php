@@ -132,7 +132,8 @@ class ManifestCache
                     $manifest = [];
                 }
             }
-            catch (Throwable $ex) {}
+            catch (Throwable $ex) {
+            }
         }
 
         $this->manifest += $manifest;

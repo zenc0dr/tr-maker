@@ -14,3 +14,9 @@
     - 'Fixed seo_param attribute that custom model integrated plugin.'
 1.1.5:
     - 'Fixed query in SeoParamItem class.'
+1.2.0:
+    - 'Added composer.json to plugin'
+1.2.1:
+    - 'Change lists method to pluck method. Thanks for contribution Nick Khaetsky.'
+1.2.2:
+    - 'Fix errors for integration with v3. Thanks for contribution Nick Khaetsky.'

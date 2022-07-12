@@ -9,7 +9,7 @@ class Layout extends Model
 {
     use \October\Rain\Database\Traits\Validation;
     use \October\Rain\Database\Traits\Sortable;
-
+    public $timestamps = false;
     /**
      * @var string The database table used by the model.
      */

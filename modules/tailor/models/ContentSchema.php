@@ -22,6 +22,11 @@ class ContentSchema extends Model
     protected $jsonable = ['meta', 'fields'];
 
     /**
+     * @var array latestMeta data
+     */
+    protected $latestMeta = [];
+
+    /**
      * @var array proposedFields
      */
     protected $proposedFields = [];
@@ -72,6 +77,7 @@ class ContentSchema extends Model
      */
     public function afterFetch()
     {
+        $this->latestMeta = $this->meta ?? [];
         $this->proposedFields = $this->fields['active'] ?? [];
         $this->droppedFields = $this->fields['dropped'] ?? [];
     }
@@ -154,6 +160,8 @@ class ContentSchema extends Model
             'dropped' => $this->droppedFields
         ];
 
+        $this->meta = $this->latestMeta;
+
         $this->save();
     }
 
@@ -181,5 +189,39 @@ class ContentSchema extends Model
     public function getChangedFields(): array
     {
         return $this->toChange;
+    }
+
+    /**
+     * setLatestMeta will set the data upon commit
+     */
+    public function setLatestMeta(array $meta)
+    {
+        $this->latestMeta = $meta;
+    }
+
+    /**
+     * isMetaDirty returns true if there are proposed meta changes
+     */
+    public function isMetaDirty($value = null)
+    {
+        if ($value === null) {
+            return $this->latestMeta !== $this->meta;
+        }
+
+        $newMeta = array_get($this->latestMeta, $value);
+        $oldMeta = array_get($this->meta, $value);
+        return $newMeta !== $oldMeta;
+    }
+
+    /**
+     * getMetaData returns the original meta data value
+     */
+    public function getMetaData($value = null)
+    {
+        if ($value === null) {
+            return $this->meta;
+        }
+
+        return array_get($this->meta, $value);
     }
 }

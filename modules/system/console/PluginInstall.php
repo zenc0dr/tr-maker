@@ -62,7 +62,9 @@ class PluginInstall extends Command
         $this->line('');
 
         $composer = new ComposerProcess;
-        $composer->setCallback(function($message) { echo $message; });
+        $composer->setCallback(function($message) {
+            echo $message;
+        });
         if ($this->option('no-update')) {
             $composer->requireNoUpdate($requirePackage);
         }

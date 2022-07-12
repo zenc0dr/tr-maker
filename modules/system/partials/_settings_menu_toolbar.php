@@ -1,6 +1,6 @@
 <div class="settings-search-toolbar-item backend-icon-background-pseudo">
     <input
-        placeholder="<?= e(trans('system::lang.settings.find_setting')) ?>"
+        placeholder="<?= __('Find a Setting...') ?>"
         type="text"
         name="search"
         value=""

@@ -90,7 +90,11 @@ class EntriesField extends FallbackField
      */
     public function defineFilterScope(FilterElement $filter, $context = null)
     {
-        $filter->defineScope($this->fieldName, $this->label)->displayAs('group')->nameFrom('title')->useConfig($this->scope ?: []);
+        $filter->defineScope($this->fieldName, $this->label)
+            ->displayAs('group')
+            ->nameFrom('title')
+            ->useConfig($this->scope ?: [])
+        ;
     }
 
     /**

@@ -148,7 +148,7 @@ class BackendController extends ControllerBase
      * @param string $controller Specifies a method name to execute.
      * @param string $action Specifies a method name to execute.
      * @param string $inPath Base path for class file location.
-     * @return ControllerBase Returns the backend controller object
+     * @return ControllerBase|false Returns the backend controller object
      */
     protected function findController($controller, $action, $inPath)
     {

@@ -245,7 +245,7 @@ class ResizeImages
         $path = urldecode(parse_url($filePath, PHP_URL_PATH));
 
         foreach ($this->getAvailableSources() as $source) {
-            if ($source['disk'] !== 'local')  {
+            if ($source['disk'] !== 'local') {
                 continue;
             }
 

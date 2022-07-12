@@ -336,7 +336,7 @@ class UpdateManager
 
         if (!$projectId) {
             $details = $this->requestProjectDetails($projectKey);
-            if (!isset($details['id']))  {
+            if (!isset($details['id'])) {
                 return null;
             }
 

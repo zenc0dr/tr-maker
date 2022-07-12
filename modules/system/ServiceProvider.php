@@ -38,7 +38,7 @@ class ServiceProvider extends ModuleServiceProvider
         $this->registerSingletons();
 
         // Register all plugins
-        PluginManager::instance()->registerAll();
+        PluginManager::instance()->registerFromProvider();
 
         $this->registerErrorHandler();
         $this->registerLogging();
@@ -88,7 +88,7 @@ class ServiceProvider extends ModuleServiceProvider
         Paginator::defaultSimpleView('system::pagination.simple-default');
 
         // Boot plugins
-        PluginManager::instance()->bootAll();
+        PluginManager::instance()->bootFromProvider();
 
         parent::boot('system');
     }
@@ -113,8 +113,14 @@ class ServiceProvider extends ModuleServiceProvider
         $this->app->singleton('system.manifest', \System\Classes\ManifestCache::class);
         $this->app->singleton('backend.ui', \Backend\Helpers\BackendUi::class);
         $this->app->singleton('backend.helper', \Backend\Helpers\Backend::class);
-        $this->app->singleton('backend.menu', function () { return \Backend\Classes\NavigationManager::instance(); });
-        $this->app->singleton('backend.auth', function () { return \Backend\Classes\AuthManager::instance(); });
+
+        $this->app->singleton('backend.menu', function () {
+            return \Backend\Classes\NavigationManager::instance();
+        });
+
+        $this->app->singleton('backend.auth', function () {
+            return \Backend\Classes\AuthManager::instance();
+        });
     }
 
     /**
@@ -322,7 +328,7 @@ class ServiceProvider extends ModuleServiceProvider
     {
         return [
             'system' => [
-                'label' => 'system::lang.settings.menu_label',
+                'label' => 'Settings',
                 'icon' => 'icon-cog',
                 'iconSvg' => 'modules/system/assets/images/cog-icon.svg',
                 'url' => Backend::url('system/settings'),

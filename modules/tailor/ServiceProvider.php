@@ -70,7 +70,7 @@ class ServiceProvider extends ModuleServiceProvider
         return [
             // Editor
             'editor.tailor_blueprints' => [
-                'label' => 'tailor::lang.permissions.manage_blueprints',
+                'label' => 'Manage Blueprints',
                 'tab' => 'Editor',
                 'roles' => UserRole::CODE_DEVELOPER,
                 'order' => 100
@@ -100,9 +100,7 @@ class ServiceProvider extends ModuleServiceProvider
             \Tailor\ContentFields\MarkdownField::class => 'markdown',
             \Tailor\ContentFields\FileUploadField::class => 'fileupload',
             \Tailor\ContentFields\MediaFinderField::class => 'mediafinder',
-            \Tailor\ContentFields\CheckboxField::class => 'checkbox',
             \Tailor\ContentFields\DataTableField::class => 'datatable',
-            \Tailor\ContentFields\TextareaField::class => 'textarea'
         ];
     }
 

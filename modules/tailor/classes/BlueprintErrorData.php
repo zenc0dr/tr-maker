@@ -3,7 +3,7 @@
 use Response;
 
 /**
- * Wraps information about a blueprint error to be used on the client side.
+ * BlueprintErrorData wraps information about a blueprint error to be used on the client side.
  *
  * @package october\tailor
  * @author Alexey Bobkov, Samuel Georges
@@ -13,18 +13,21 @@ class BlueprintErrorData
     /**
      * @var string message The error message
      */
-    private $message;
+    protected $message;
 
     /**
      * @var int line The error line
      */
-    private $line;
+    protected $line;
 
     /**
      * @var int pos Position of the error in the line
      */
-    private $pos;
+    protected $pos;
 
+    /**
+     * __construct
+     */
     public function __construct($message, $line = null, $pos = null)
     {
         $this->message = $message;
@@ -32,17 +35,26 @@ class BlueprintErrorData
         $this->pos = $pos;
     }
 
+    /**
+     * fromException
+     */
     public static function fromException($ex)
     {
         return new self($ex->getMessage(), $ex->getLine());
     }
 
+    /**
+     * toResponse
+     */
     public function toResponse()
     {
         return Response::json($this->asArray(), 406);
     }
 
-    private function asArray()
+    /**
+     * asArray
+     */
+    protected function asArray()
     {
         return [
             'blueprintError' => [

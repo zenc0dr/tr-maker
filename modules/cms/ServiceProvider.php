@@ -234,8 +234,8 @@ class ServiceProvider extends ModuleServiceProvider
                 'order' => 200
             ],
             'maintenance_settings' => [
-                'label' => 'cms::lang.maintenance.settings_menu',
-                'description' => 'cms::lang.maintenance.settings_menu_description',
+                'label' => 'Maintenance Mode',
+                'description' => 'Configure the maintenance mode page and toggle the setting.',
                 'category' => SettingsManager::CATEGORY_CMS,
                 'icon' => 'octo-icon-power',
                 'class' => \Cms\Models\MaintenanceSetting::class,

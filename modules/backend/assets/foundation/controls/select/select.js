@@ -140,10 +140,12 @@ class Select extends BaseClass
         return selectOptions;
     }
 
-    buildAjaxHandlerOption(selectOptions, source) {
+    buildAjaxHandlerOption(selectOptions, handler) {
+        var self = this;
+
         selectOptions.ajax = {
             transport: function(params, success, failure) {
-                var request = oc.ajax(source, {
+                var request = oc.request(self.$el.get(0), handler, {
                     data: params.data
                 });
 

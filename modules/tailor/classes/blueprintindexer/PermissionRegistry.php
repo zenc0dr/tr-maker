@@ -137,6 +137,5 @@ trait PermissionRegistry
      */
     public function hasBlueprintPermission($handle, $permissionSuffix = null)
     {
-
     }
 }

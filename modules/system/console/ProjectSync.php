@@ -38,7 +38,9 @@ class ProjectSync extends Command
             // Composer update
             $this->comment("Executing: composer update");
             $composer = new ComposerProcess;
-            $composer->setCallback(function($message) { echo $message; });
+            $composer->setCallback(function($message) {
+                echo $message;
+            });
             $composer->update();
 
             // Check dependencies
@@ -87,7 +89,9 @@ class ProjectSync extends Command
             $this->line('');
 
             $composer = new ComposerProcess;
-            $composer->setCallback(function($message) { echo $message; });
+            $composer->setCallback(function($message) {
+                echo $message;
+            });
             $composer->requireNoUpdate($installPackage);
 
             if ($composer->lastExitCode() !== 0) {

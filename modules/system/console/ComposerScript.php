@@ -18,7 +18,7 @@ class ComposerScript
     {
         self::clearMeta();
 
-        passthru(PHP_BINARY.' artisan package:discover');
+        static::passthruArtisan('package:discover');
     }
 
     /**
@@ -27,9 +27,9 @@ class ComposerScript
      */
     public static function postUpdateCmd(Event $event)
     {
-        passthru(PHP_BINARY.' artisan october:util set build');
+        static::passthruArtisan('october:util set build');
 
-        passthru(PHP_BINARY.' artisan october:mirror --composer');
+        static::passthruArtisan('october:mirror --composer');
     }
 
     /**
@@ -40,7 +40,7 @@ class ComposerScript
         $package = $event->getOperation()->getPackage();
 
         if (self::isOfType($package, 'plugin')) {
-            passthru(PHP_BINARY." artisan plugin:remove ${package} --composer");
+            static::passthruArtisan("plugin:remove ${package} --composer");
         }
     }
 
@@ -79,5 +79,13 @@ class ComposerScript
                 @unlink($packagesMeta);
             }
         }
+    }
+
+    /**
+     * passthruArtisan
+     */
+    protected static function passthruArtisan($command)
+    {
+        passthru('"'.PHP_BINARY.'" artisan ' .$command);
     }
 }

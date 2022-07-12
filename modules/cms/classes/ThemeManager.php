@@ -42,11 +42,7 @@ class ThemeManager
      */
     public function bootAllFrontend()
     {
-        $theme = CmsTheme::getActiveTheme();
-        if (!$theme) {
-            return;
-        }
-
+        $theme = $this->getActiveTheme();
         $langPath = $theme->getPath() . '/lang';
         if (is_dir($langPath)) {
             Lang::addJsonPath($langPath);
@@ -65,11 +61,7 @@ class ThemeManager
      */
     public function bootAllBackend()
     {
-        $theme = CmsTheme::getActiveTheme();
-        if (!$theme) {
-            return;
-        }
-
+        $theme = $this->getActiveTheme();
         $langPath = $theme->getPath() . '/lang';
         if (is_dir($langPath)) {
             Lang::addJsonPath($langPath);
@@ -83,6 +75,15 @@ class ThemeManager
                 Lang::addNamespace("theme.{$parent->getId()}", $langPath);
             }
         }
+    }
+
+    /**
+     * getActiveTheme return the active theme without affecting the internal cache
+     * since it may fire before the session driver has loaded.
+     */
+    public function getActiveTheme(): CmsTheme
+    {
+        return CmsTheme::load(CmsTheme::getActiveThemeCode());
     }
 
     /**

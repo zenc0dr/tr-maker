@@ -29,6 +29,8 @@ class Block extends Model
         ];
     }
 
+    public $attachMany = ['images' => 'System\Models\File'];
+    
     public function stringTime()
     {
         $times = $this->getTimeOptions();

@@ -55,7 +55,9 @@ class PluginCheck extends Command
             // Composer update
             $this->comment("Executing: composer update");
             $composer = new ComposerProcess;
-            $composer->setCallback(function($message) { echo $message; });
+            $composer->setCallback(function($message) {
+                echo $message;
+            });
             $composer->update();
 
             // Migrate database

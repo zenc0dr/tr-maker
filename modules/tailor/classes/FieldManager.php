@@ -7,6 +7,7 @@ use Tailor\Classes\Fieldset;
 use Tailor\Classes\BlueprintIndexer;
 use Tailor\Classes\ContentFieldBase;
 use Tailor\ContentFields\MixinField;
+use Tailor\ContentFields\GenericField;
 use Tailor\ContentFields\FallbackField;
 use Tailor\Classes\Blueprint\MixinBlueprint;
 use System\Classes\PluginManager;
@@ -56,9 +57,8 @@ class FieldManager
      */
     public function makeField(string $name, $config = []): ContentFieldBase
     {
-        $field = new FallbackField(['fieldName' => $name]);
         $type = $config['type'] ?? null;
-
+        $field = $this->makeFallbackField($name, $type);
         if (!$type) {
             return $field;
         }
@@ -69,6 +69,32 @@ class FieldManager
         }
 
         return $field;
+    }
+
+    /**
+     * makeFallbackField
+     */
+    protected function makeFallbackField($name, $type): ContentFieldBase
+    {
+        $genericTypes = [
+            'balloon-selector',
+            'checkbox',
+            'checkboxlist',
+            'dropdown',
+            'email',
+            'number',
+            'password',
+            'radio',
+            'switch',
+            'text',
+            'textarea',
+        ];
+
+        if (in_array($type, $genericTypes)) {
+            return new GenericField(['fieldName' => $name]);
+        }
+
+        return new FallbackField(['fieldName' => $name]);
     }
 
     /**
@@ -200,7 +226,9 @@ class FieldManager
 
         foreach ($fields as $fieldName => $fieldConfig) {
             $field = $this->makeField($fieldName, $fieldConfig);
-            $field->useConfig($fieldConfig);
+            if (is_array($fieldConfig)) {
+                $field->useConfig($fieldConfig);
+            }
 
             if ($field instanceof MixinField) {
                 if (($mixinUuid = $manager->hasMixin($field->source)) && ($mixin = $manager->findMixin($mixinUuid))) {

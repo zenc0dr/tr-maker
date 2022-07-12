@@ -23,6 +23,7 @@ class SchemaBuilder
     use \Tailor\Classes\SchemaBuilder\HasCommonColumns;
     use \Tailor\Classes\SchemaBuilder\HasStreamColumns;
     use \Tailor\Classes\SchemaBuilder\HasStructureColumns;
+    use \Tailor\Classes\SchemaBuilder\HasTablePatches;
 
     /**
      * @var Blueprint blueprint
@@ -143,8 +144,7 @@ class SchemaBuilder
         $this->migrateFields();
         $this->migrateJoins();
         $this->migrateRepeaters();
-        $this->migrateRenameColumns();
-        $this->migrateDropColumns();
+        $this->migrateTablePatches();
 
         if ($this->actionCount > 0) {
             $this->getContentSchema()->commitChanges();
@@ -185,78 +185,6 @@ class SchemaBuilder
     }
 
     /**
-     * migrateDropColumns
-     */
-    protected function migrateDropColumns()
-    {
-        $schemaObj = $this->getContentSchema();
-        $droppedFields = $schemaObj->getDroppedFields();
-
-        foreach ($droppedFields as $fieldName => $details) {
-            // Never touch a reserved field
-            if (in_array($fieldName, $this->reservedFieldNames)) {
-                continue;
-            }
-
-            if (!$this->hasColumn($fieldName)) {
-                continue;
-            }
-
-            $droppedName = 'x_'.$fieldName.'_'.hash('crc32', str_random());
-
-            Schema::table($this->tableName, function($table) use ($fieldName, $droppedName) {
-                $table->renameColumn($fieldName, $droppedName);
-            });
-
-            $schemaObj->setDroppedColumn($fieldName, $droppedName);
-
-            $this->actionCount++;
-        }
-    }
-
-    /**
-     * migrateRenameColumns
-     */
-    protected function migrateRenameColumns()
-    {
-        $schemaObj = $this->getContentSchema();
-        $changedFields = $schemaObj->getChangedFields();
-
-        foreach ($changedFields as $fieldName => $details) {
-            // Never touch a reserved field
-            if (in_array($fieldName, $this->reservedFieldNames)) {
-                continue;
-            }
-
-            $wantType = $details['type'] ?? null;
-            if (!$wantType) {
-                continue;
-            }
-
-            try {
-                Schema::table($this->tableName, function($table) use ($fieldName, $wantType) {
-                    $table->$wantType($fieldName)->nullable()->change();
-                });
-            }
-            catch (Exception $ex) {
-                $droppedName = 'x_'.$fieldName.'_'.hash('crc32', str_random());
-
-                Schema::table($this->tableName, function($table) use ($fieldName, $droppedName) {
-                    $table->renameColumn($fieldName, $droppedName);
-                });
-
-                Schema::table($this->tableName, function($table) use ($fieldName, $wantType) {
-                    $table->$wantType($fieldName)->nullable();
-                });
-
-                $schemaObj->setDroppedColumn($fieldName, $droppedName);
-            }
-
-            $this->actionCount++;
-        }
-    }
-
-    /**
      * makeDatabaseBlueprint
      */
     protected function makeDatabaseBlueprint($fieldset)
@@ -280,6 +208,9 @@ class SchemaBuilder
         $schema = ContentSchema::findRecord($this->tableName);
         $schema->setExistingColumns($this->tableColumns);
         $schema->proposeChanges($this->tableBlueprint);
+        $schema->setLatestMeta([
+            'blueprint_type' => $this->blueprint->type
+        ]);
 
         return $this->contentSchema = $schema;
     }

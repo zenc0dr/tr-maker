@@ -68,7 +68,7 @@ trait EditorComponentListLoader
     private function getViewBagComponent()
     {
         $manager = ComponentManager::instance();
-        return $this->makeTemplateComponent($manager, 'viewBag', [], 'viewBag');;
+        return $this->makeTemplateComponent($manager, 'viewBag', [], 'viewBag');
     }
 
     /**

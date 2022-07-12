@@ -324,7 +324,8 @@ class CodeParser
                 return $matches[0];
             }
         }
-        catch (Exception $ex) {}
+        catch (Exception $ex) {
+        }
 
         return null;
     }

@@ -126,42 +126,83 @@ trait EditorExtensionState
             ->setChildKeyPrefix(EditorExtension::DOCUMENT_TYPE_PAGE.':')
         ;
 
-        $pagesNode->addRootMenuItem(ItemDefinition::TYPE_TEXT,
-            Lang::get('cms::lang.page.create_new'), 'cms:create-document@'.EditorExtension::DOCUMENT_TYPE_PAGE)
-            ->setIcon('octo-icon-create');
+        $pagesNode->addRootMenuItem(
+            ItemDefinition::TYPE_TEXT,
+            Lang::get('cms::lang.page.create_new'),
+            'cms:create-document@'.EditorExtension::DOCUMENT_TYPE_PAGE
+        )->setIcon('octo-icon-create');
+
         $pagesNode->addRootMenuItem(ItemDefinition::TYPE_SEPARATOR);
 
-        $sortingItem = $pagesNode->addRootMenuItem(ItemDefinition::TYPE_TEXT,
-            Lang::get('cms::lang.page.editor_sorting'), 'sorting');
-        $sortingItem->addItem(ItemDefinition::TYPE_RADIOBUTTON,
-            Lang::get('cms::lang.page.editor_sort_by_title'), 'cms:sort-pages@title')
-            ->setChecked(true);
-        $sortingItem->addItem(ItemDefinition::TYPE_RADIOBUTTON,
-            Lang::get('cms::lang.page.editor_sort_by_url'), 'cms:sort-pages@url');
-        $sortingItem->addItem(ItemDefinition::TYPE_RADIOBUTTON,
-            Lang::get('cms::lang.page.editor_sort_by_file_name'), 'cms:sort-pages@filename');
+        $sortingItem = $pagesNode->addRootMenuItem(
+            ItemDefinition::TYPE_TEXT,
+            Lang::get('cms::lang.page.editor_sorting'),
+            'sorting'
+        );
 
-        $groupingItem = $pagesNode->addRootMenuItem(ItemDefinition::TYPE_TEXT,
-            Lang::get('cms::lang.page.editor_grouping'), 'grouping');
-        $groupingItem->addItem(ItemDefinition::TYPE_RADIOBUTTON,
-            Lang::get('cms::lang.page.editor_group_by_filepath'), 'cms:group-pages@path')
-            ->setChecked(true);
-        $groupingItem->addItem(ItemDefinition::TYPE_RADIOBUTTON,
-            Lang::get('cms::lang.page.editor_group_by_url'), 'cms:group-pages@url');
+        $sortingItem->addItem(
+            ItemDefinition::TYPE_RADIOBUTTON,
+            Lang::get('cms::lang.page.editor_sort_by_title'),
+            'cms:sort-pages@title'
+        )->setChecked(true);
 
-        $displayItem = $pagesNode->addRootMenuItem(ItemDefinition::TYPE_TEXT,
-            Lang::get('cms::lang.page.editor_display'), 'display');
-        $displayItem->addItem(ItemDefinition::TYPE_RADIOBUTTON,
-            Lang::get('cms::lang.page.editor_display_title'), 'cms:display-pages@title')
-            ->setChecked(true);
-        $displayItem->addItem(ItemDefinition::TYPE_RADIOBUTTON,
-            Lang::get('cms::lang.page.editor_display_url'), 'cms:display-pages@url');
-        $displayItem->addItem(ItemDefinition::TYPE_RADIOBUTTON,
-            Lang::get('cms::lang.page.editor_display_file'), 'cms:display-pages@filename');
+        $sortingItem->addItem(
+            ItemDefinition::TYPE_RADIOBUTTON,
+            Lang::get('cms::lang.page.editor_sort_by_url'),
+            'cms:sort-pages@url'
+        );
+
+        $sortingItem->addItem(
+            ItemDefinition::TYPE_RADIOBUTTON,
+            Lang::get('cms::lang.page.editor_sort_by_file_name'),
+            'cms:sort-pages@filename'
+        );
+
+        $groupingItem = $pagesNode->addRootMenuItem(
+            ItemDefinition::TYPE_TEXT,
+            Lang::get('cms::lang.page.editor_grouping'),
+            'grouping'
+        );
+
+        $groupingItem->addItem(
+            ItemDefinition::TYPE_RADIOBUTTON,
+            Lang::get('cms::lang.page.editor_group_by_filepath'),
+            'cms:group-pages@path'
+        )->setChecked(true);
+
+        $groupingItem->addItem(
+            ItemDefinition::TYPE_RADIOBUTTON,
+            Lang::get('cms::lang.page.editor_group_by_url'),
+            'cms:group-pages@url'
+        );
+
+        $displayItem = $pagesNode->addRootMenuItem(
+            ItemDefinition::TYPE_TEXT,
+            Lang::get('cms::lang.page.editor_display'),
+            'display'
+        );
+
+        $displayItem->addItem(
+            ItemDefinition::TYPE_RADIOBUTTON,
+            Lang::get('cms::lang.page.editor_display_title'),
+            'cms:display-pages@title'
+        )->setChecked(true);
+
+        $displayItem->addItem(
+            ItemDefinition::TYPE_RADIOBUTTON,
+            Lang::get('cms::lang.page.editor_display_url'),
+            'cms:display-pages@url'
+        );
+
+        $displayItem->addItem(
+            ItemDefinition::TYPE_RADIOBUTTON,
+            Lang::get('cms::lang.page.editor_display_file'),
+            'cms:display-pages@filename'
+        );
 
         foreach ($pages as $page) {
             $pagePath = dirname($page->fileName);
-            if ($pagePath == '.') {
+            if ($pagePath === '.') {
                 $pagePath = "";
             }
 
@@ -194,9 +235,11 @@ trait EditorExtensionState
             ->setChildKeyPrefix(EditorExtension::DOCUMENT_TYPE_LAYOUT.':')
         ;
 
-        $layoutsNode->addRootMenuItem(ItemDefinition::TYPE_TEXT,
-            Lang::get('cms::lang.layout.create_new'), 'cms:create-document@'.EditorExtension::DOCUMENT_TYPE_LAYOUT)
-            ->setIcon('octo-icon-create');
+        $layoutsNode->addRootMenuItem(
+            ItemDefinition::TYPE_TEXT,
+            Lang::get('cms::lang.layout.create_new'),
+            'cms:create-document@'.EditorExtension::DOCUMENT_TYPE_LAYOUT
+        )->setIcon('octo-icon-create');
 
         foreach ($layouts as $layout) {
             $layoutPath = dirname($layout->fileName);
@@ -229,9 +272,11 @@ trait EditorExtensionState
             ->setGroupByMode(NodeDefinition::GROUP_BY_MODE_FOLDERS)
             ->setChildKeyPrefix(EditorExtension::DOCUMENT_TYPE_PARTIAL.':');
 
-        $partialsNode->addRootMenuItem(ItemDefinition::TYPE_TEXT,
-            Lang::get('cms::lang.partial.create_new'), 'cms:create-document@'.EditorExtension::DOCUMENT_TYPE_PARTIAL)
-            ->setIcon('octo-icon-create');
+        $partialsNode->addRootMenuItem(
+            ItemDefinition::TYPE_TEXT,
+            Lang::get('cms::lang.partial.create_new'),
+            'cms:create-document@'.EditorExtension::DOCUMENT_TYPE_PARTIAL
+        )->setIcon('octo-icon-create');
 
         foreach ($partials as $partial) {
             $partialPath = dirname($partial->fileName);
@@ -264,9 +309,11 @@ trait EditorExtensionState
             ->setGroupByMode(NodeDefinition::GROUP_BY_MODE_FOLDERS)
             ->setChildKeyPrefix(EditorExtension::DOCUMENT_TYPE_CONTENT.':');
 
-        $contentNode->addRootMenuItem(ItemDefinition::TYPE_TEXT,
-            Lang::get('cms::lang.content.new'), 'cms:create-document@'.EditorExtension::DOCUMENT_TYPE_CONTENT)
-            ->setIcon('octo-icon-create');
+        $contentNode->addRootMenuItem(
+            ItemDefinition::TYPE_TEXT,
+            Lang::get('cms::lang.content.new'),
+            'cms:create-document@'.EditorExtension::DOCUMENT_TYPE_CONTENT
+        )->setIcon('octo-icon-create');
 
         foreach ($contents as $contentFile) {
             $contentPath = dirname($contentFile->fileName);
@@ -390,7 +437,6 @@ trait EditorExtensionState
                 ->setDragAndDropMode([NodeDefinition::DND_CUSTOM]);
 
             foreach ($components as $alias => $componentArr) {
-
                 $componentName = trans($componentArr['name'] ?? '');
                 $componentDescription = trans($componentArr['description'] ?? '');
                 $componentClassName = $componentArr['className'];

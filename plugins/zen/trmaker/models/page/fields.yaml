@@ -27,12 +27,12 @@ fields:
         readOnly: 1
         type: text
         comment: 'Сформируется после сохранения'
-    project_id:
-        label: Проект
+    layout_id:
+        label: Шаблон
         showSearch: true
         span: auto
         type: dropdown
-        comment: 'укажи проект'
+        comment: 'укажи шаблон'
 tabs:
     fields:
         description:

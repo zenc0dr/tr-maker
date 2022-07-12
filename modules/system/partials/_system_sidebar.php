@@ -4,7 +4,7 @@
             class="system-home-link back-link-other"
             href="<?= Backend::url('system/settings') ?>"
             onclick="return sideNavSettingsHomeClick()">
-            <i></i><?= e(trans('system::lang.settings.home_label')) ?>
+            <i></i><?= __('Show All Settings') ?>
         </a>
     </div>
 <?php Block::endPut() ?>
@@ -17,7 +17,7 @@
     <div class="layout">
         <div class="layout-row min-size">
             <a class="system-home-link" href="<?= Backend::url('system/settings') ?>">
-                <i class="icon-home"></i><?= e(trans('system::lang.settings.home_label')) ?>
+                <i class="icon-home"></i><?= __('Show All Settings') ?>
             </a>
         </div>
         <div class="layout-row min-size">

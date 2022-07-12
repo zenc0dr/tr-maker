@@ -287,7 +287,7 @@ class EditorSetting extends Model
     public function getEditorToolbarPresets(): array
     {
         return array_map(function($value) {
-            return preg_replace('/\s+/', ' ',$value);
+            return preg_replace('/\s+/', ' ', $value);
         }, $this->editorToolbarPresets);
     }
 

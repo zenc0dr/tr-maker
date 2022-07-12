@@ -29,3 +29,14 @@ tabs:
             span: full
             type: richeditor
             tab: Детально
+        images:
+            label: Изображения
+            mode: image
+            imageWidth: '200'
+            useCaption: true
+            thumbOptions:
+                mode: crop
+                extension: auto
+            span: left
+            type: fileupload
+            tab: Детально

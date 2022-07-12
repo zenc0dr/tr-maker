@@ -24,7 +24,6 @@ trait NestedTreeModel
      */
     public function initializeNestedTree()
     {
-
     }
 
     /**

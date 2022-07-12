@@ -142,7 +142,7 @@ trait OctoberUtilCommands
             /*
              * Include the moment localization data
              */
-            $momentPath = base_path() . '/modules/system/assets/ui/vendor/moment/locale/'.$locale.'.js';
+            $momentPath = base_path() . '/modules/backend/assets/vendor/moment/locale/'.$locale.'.js';
             if (File::exists($momentPath)) {
                 $contents .= PHP_EOL.File::get($momentPath).PHP_EOL;
             }
@@ -150,7 +150,7 @@ trait OctoberUtilCommands
             /*
              * Include the select localization data
              */
-            $selectPath = base_path() . '/modules/system/assets/ui/vendor/select2/js/i18n/'.$locale.'.js';
+            $selectPath = base_path() . '/modules/backend/assets/vendor/select2/js/i18n/'.$locale.'.js';
             if (File::exists($selectPath)) {
                 $contents .= PHP_EOL.File::get($selectPath).PHP_EOL;
             }

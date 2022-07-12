@@ -256,7 +256,6 @@ class Users extends SettingsController
         $loginChanged = $this->user->login != post('User[login]');
         $passwordChanged = strlen(post('User[password]'));
         if ($loginChanged || $passwordChanged) {
-
             // Determine remember policy
             $remember = Config::get('backend.force_remember');
             if ($remember === null) {

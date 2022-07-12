@@ -134,4 +134,3 @@ trait VersionableModel
         return $this->getTable().'.'.$this->getIsVersionColumn();
     }
 }
-

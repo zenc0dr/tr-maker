@@ -242,9 +242,7 @@ class Asset extends Extendable
         if (!File::isFile($filePath)) {
             // Look at parent
             if ($parentTheme = $this->theme->getParentTheme()) {
-
                 $foundTheme = $parentTheme;
-
                 $filePath = $parentTheme->getPath().'/'.$this->dirName.'/'.$fileName;
 
                 if (!File::isFile($filePath)) {

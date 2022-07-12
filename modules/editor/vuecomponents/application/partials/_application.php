@@ -12,7 +12,7 @@
         <template v-slot:first>
             <editor-component-navigator ref="navigator" :store="store" :readonly="navigatorReadonly"></editor-component-navigator>
         </template>
-        
+
         <template v-slot:second>
             <div class="flex-layout-column fill-container">
                 <backend-component-tabs
@@ -24,8 +24,8 @@
                     :hide-tab-panel="isDirectDocumentMode"
                     :common-tab-context-menu-items="['close', 'close-all', 'close-others', 'close-saved']"
                     :tab-context-menu-items="tabContextMenuItems"
-                    aria-label="<?= e(trans('editor::lang.mainview.editor_tabs')) ?>"
-                    closeTooltip="<?= e(trans('editor::lang.mainview.editor_close_tab')) ?>"
+                    aria-label="<?= __('Editor Tabs') ?>"
+                    closeTooltip="<?= __('Close Tab') ?>"
                     closeTooltipHotkey="⇧⌥W"
                     @tabclose="onTabClose"
                     @tabselected="onTabSelected"

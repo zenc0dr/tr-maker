@@ -66,7 +66,9 @@ class ThemeInstall extends Command
         $this->line('');
 
         $composer = new ComposerProcess;
-        $composer->setCallback(function($message) { echo $message; });
+        $composer->setCallback(function($message) {
+            echo $message;
+        });
         $composer->require($requirePackage);
 
         if ($composer->lastExitCode() !== 0) {

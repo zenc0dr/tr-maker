@@ -1,5 +1,6 @@
 <?php namespace Lovata\MightySeo\Classes;
 
+use App;
 use Twig;
 use Lovata\MightySeo\Classes\Item\SeoTemplateItem;
 
@@ -29,7 +30,7 @@ class TemplateProcessor
      * @param array  $arParamList
      * @param bool   $bOneLine
      */
-    public function __construct($sValue, $arParamList, $bOneLine = false)
+    public function __construct($sValue = null, $arParamList = null, $bOneLine = false)
     {
         $this->bOneLine = $bOneLine;
         if (empty($sValue) || !is_string($sValue)) {
@@ -88,7 +89,10 @@ class TemplateProcessor
             $obSeoTemplate = SeoTemplateItem::make($sTemplateKey);
 
             /** @var TemplateProcessor $obTemplateProcessor */
-            $obTemplateProcessor = app(self::class, [$obSeoTemplate->value, $this->arParamList, $this->bOneLine]);
+            $obTemplateProcessor = App::make(self::class, [
+                'sValue' => $obSeoTemplate->value,
+                'arParamList' => $this->arParamList,
+                'bOneLine' => $this->bOneLine]);
             $this->sResult = $obTemplateProcessor->run();
 
             $this->sValue = str_replace($sTemplateCode, $this->sResult, $this->sValue);

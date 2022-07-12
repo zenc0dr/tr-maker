@@ -154,8 +154,13 @@ var Controller = /*#__PURE__*/function () {
 
 
     this.flashMessageBind = function (event) {
-      var self = this;
       var options = event.detail.context.options;
+
+      if (!options.flash) {
+        return;
+      }
+
+      var self = this;
 
       options.handleErrorMessage = function (message) {
         self.flashMessage.show({
@@ -189,17 +194,17 @@ var Controller = /*#__PURE__*/function () {
       addEventListener('ajax:setup', this.enableProgressBar); // Attach loader
 
       this.attachLoader = new _attach_loader__WEBPACK_IMPORTED_MODULE_1__.AttachLoader();
-      _util_events__WEBPACK_IMPORTED_MODULE_3__.Events.on(document, 'ajax:promise', '[data-request]', this.showAttachLoader);
-      _util_events__WEBPACK_IMPORTED_MODULE_3__.Events.on(document, 'ajax:fail', '[data-request]', this.hideAttachLoader);
-      _util_events__WEBPACK_IMPORTED_MODULE_3__.Events.on(document, 'ajax:done', '[data-request]', this.hideAttachLoader); // Validator
+      _util_events__WEBPACK_IMPORTED_MODULE_3__.Events.on(document, 'ajax:promise', 'form, [data-attach-loading]', this.showAttachLoader);
+      _util_events__WEBPACK_IMPORTED_MODULE_3__.Events.on(document, 'ajax:fail', 'form, [data-attach-loading]', this.hideAttachLoader);
+      _util_events__WEBPACK_IMPORTED_MODULE_3__.Events.on(document, 'ajax:done', 'form, [data-attach-loading]', this.hideAttachLoader); // Validator
 
       this.validator = new _validator__WEBPACK_IMPORTED_MODULE_0__.Validator();
-      _util_events__WEBPACK_IMPORTED_MODULE_3__.Events.on(document, 'ajax:before-validate', '[data-request][data-request-validate]', this.validatorValidate);
-      _util_events__WEBPACK_IMPORTED_MODULE_3__.Events.on(document, 'ajax:promise', '[data-request][data-request-validate]', this.validatorSubmit); // Flash message
+      _util_events__WEBPACK_IMPORTED_MODULE_3__.Events.on(document, 'ajax:before-validate', '[data-request-validate]', this.validatorValidate);
+      _util_events__WEBPACK_IMPORTED_MODULE_3__.Events.on(document, 'ajax:promise', '[data-request-validate]', this.validatorSubmit); // Flash message
 
       this.flashMessage = new _flash_message__WEBPACK_IMPORTED_MODULE_2__.FlashMessage();
       addEventListener('render', this.flashMessageRender);
-      _util_events__WEBPACK_IMPORTED_MODULE_3__.Events.on(document, 'ajax:setup', '[data-request][data-request-flash]', this.flashMessageBind);
+      addEventListener('ajax:setup', this.flashMessageBind);
     }
   }, {
     key: "stop",
@@ -213,17 +218,17 @@ var Controller = /*#__PURE__*/function () {
       removeEventListener('ajax:setup', this.enableProgressBar); // Attach loader
 
       this.attachLoader = null;
-      _util_events__WEBPACK_IMPORTED_MODULE_3__.Events.off(document, 'ajax:promise', '[data-request]', this.showAttachLoader);
-      _util_events__WEBPACK_IMPORTED_MODULE_3__.Events.off(document, 'ajax:fail', '[data-request]', this.hideAttachLoader);
-      _util_events__WEBPACK_IMPORTED_MODULE_3__.Events.off(document, 'ajax:done', '[data-request]', this.hideAttachLoader); // Validator
+      _util_events__WEBPACK_IMPORTED_MODULE_3__.Events.off(document, 'ajax:promise', 'form, [data-attach-loading]', this.showAttachLoader);
+      _util_events__WEBPACK_IMPORTED_MODULE_3__.Events.off(document, 'ajax:fail', 'form, [data-attach-loading]', this.hideAttachLoader);
+      _util_events__WEBPACK_IMPORTED_MODULE_3__.Events.off(document, 'ajax:done', 'form, [data-attach-loading]', this.hideAttachLoader); // Validator
 
       this.validator = null;
-      _util_events__WEBPACK_IMPORTED_MODULE_3__.Events.off(document, 'ajax:before-validate', '[data-request][data-request-validate]', this.validatorValidate);
-      _util_events__WEBPACK_IMPORTED_MODULE_3__.Events.off(document, 'ajax:promise', '[data-request][data-request-validate]', this.validatorSubmit); // Flash message
+      _util_events__WEBPACK_IMPORTED_MODULE_3__.Events.off(document, 'ajax:before-validate', '[data-request-validate]', this.validatorValidate);
+      _util_events__WEBPACK_IMPORTED_MODULE_3__.Events.off(document, 'ajax:promise', '[data-request-validate]', this.validatorSubmit); // Flash message
 
       this.flashMessage = null;
       removeEventListener('render', this.flashMessageRender);
-      _util_events__WEBPACK_IMPORTED_MODULE_3__.Events.off(document, 'ajax:setup', '[data-request][data-request-flash]', this.flashMessageBind);
+      removeEventListener('ajax:setup', this.flashMessageBind);
     }
   }]);
 
@@ -960,7 +965,9 @@ if (!window.oc) {
 
 if (!window.oc.AjaxFramework) {
   // Namespace
-  window.oc.AjaxFramework = _namespace__WEBPACK_IMPORTED_MODULE_2__["default"]; // Selector events
+  window.oc.AjaxFramework = _namespace__WEBPACK_IMPORTED_MODULE_2__["default"]; // Request on element with builder
+
+  window.oc.request = _namespace__WEBPACK_IMPORTED_MODULE_2__["default"].requestElement; // Selector events
 
   window.oc.Events = _util_events__WEBPACK_IMPORTED_MODULE_1__.Events; // JSON parser
 
@@ -1547,11 +1554,14 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var _controller__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./controller */ "./src/framework/controller.js");
 /* harmony import */ var _migrate__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./migrate */ "./src/framework/migrate.js");
+/* harmony import */ var _request_builder__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./request-builder */ "./src/framework/request-builder.js");
+
 
 
 var controller = new _controller__WEBPACK_IMPORTED_MODULE_0__.Controller();
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   controller: controller,
+  requestElement: _request_builder__WEBPACK_IMPORTED_MODULE_2__.RequestBuilder.fromElement,
   start: function start() {
     controller.start();
 
@@ -1750,6 +1760,10 @@ var RequestBuilder = /*#__PURE__*/function () {
   }], [{
     key: "fromElement",
     value: function fromElement(element, handler, options) {
+      if (typeof element === 'string') {
+        element = document.querySelector(element);
+      }
+
       return new RequestBuilder(element, handler, options);
     }
   }]);
@@ -2519,9 +2533,11 @@ if (!window.oc.AjaxRequest) {
 
   window.oc.AssetManager = _asset_manager__WEBPACK_IMPORTED_MODULE_0__.AssetManager; // Request without element
 
-  window.oc.ajax = _namespace__WEBPACK_IMPORTED_MODULE_1__["default"].send; // Request on element
+  window.oc.ajax = _namespace__WEBPACK_IMPORTED_MODULE_1__["default"].send; // Request on element (framework can override)
 
-  window.oc.request = _namespace__WEBPACK_IMPORTED_MODULE_1__["default"].sendElement;
+  if (!window.oc.request) {
+    window.oc.request = _namespace__WEBPACK_IMPORTED_MODULE_1__["default"].sendElement;
+  }
 }
 
 /***/ }),

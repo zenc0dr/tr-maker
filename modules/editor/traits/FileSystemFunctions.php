@@ -13,6 +13,9 @@ use Symfony\Component\HttpFoundation\File\UploadedFile;
  */
 trait FileSystemFunctions
 {
+    /**
+     * editorCreateDirectory
+     */
     protected function editorCreateDirectory($basePath, $newName, $parent)
     {
         if (!strlen($basePath)) {
@@ -48,6 +51,9 @@ trait FileSystemFunctions
         }
     }
 
+    /**
+     * editorRenameFileOrDirectory
+     */
     protected function editorRenameFileOrDirectory($basePath, $name, $originalPath, $allowedFileExtensions)
     {
         $newName = trim($name);
@@ -135,6 +141,9 @@ trait FileSystemFunctions
         }
     }
 
+    /**
+     * editorMoveFilesOrDirectories
+     */
     protected function editorMoveFilesOrDirectories($basePath, $selectedList, $destinationDir)
     {
         if (!count($selectedList)) {
@@ -174,7 +183,7 @@ trait FileSystemFunctions
                 continue;
             }
 
-            if ((is_file($originalFullPath) && is_file($newFullPath)) 
+            if ((is_file($originalFullPath) && is_file($newFullPath))
                 || (is_dir($originalFullPath) && is_dir($newFullPath))) {
                 throw new ApplicationException(Lang::get(
                     'editor::lang.filesystem.destination_exists',
@@ -222,6 +231,9 @@ trait FileSystemFunctions
         }
     }
 
+    /**
+     * editorUploadFiles
+     */
     protected function editorUploadFiles($basePath, $allowedExtensions)
     {
         $uploadedFile = Input::file('file');
@@ -312,6 +324,9 @@ trait FileSystemFunctions
         return true;
     }
 
+    /**
+     * validateFileSystemFileExtension
+     */
     private function validateFileSystemFileExtension($name, $allowedExtensions): bool
     {
         $extension = strtolower(File::extension($name));

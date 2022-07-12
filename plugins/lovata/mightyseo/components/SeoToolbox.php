@@ -216,7 +216,11 @@ class SeoToolbox extends ComponentBase
 
         //Process string with TemplateProcessor
         /** @var TemplateProcessor $obTemplateProcessor */
-        $obTemplateProcessor = App::make(TemplateProcessor::class, [$sFieldValue, $this->arTemplateParams, $this->isOneLineParam($sKey)]);
+        $obTemplateProcessor = App::make(TemplateProcessor::class, [
+            'sValue' => $sFieldValue, 
+            'arParamList' => $this->arTemplateParams, 
+            'bOneLine' => $this->isOneLineParam($sKey)
+        ]);
         $sResult = $obTemplateProcessor->run();
 
         return $sResult;
@@ -242,7 +246,11 @@ class SeoToolbox extends ComponentBase
 
         //Process string with TemplateProcessor
         /** @var TemplateProcessor $obTemplateProcessor */
-        $obTemplateProcessor = App::make(TemplateProcessor::class, [$sFieldValue, $this->arTemplateParams, $this->isOneLineParam($sKey)]);
+        $obTemplateProcessor = App::make(TemplateProcessor::class, [
+            'sValue' => $sFieldValue, 
+            'arParamList' => $this->arTemplateParams, 
+            'bOneLine' => $this->isOneLineParam($sKey)
+        ]);
         $sResult = $obTemplateProcessor->run();
 
         return $sResult;

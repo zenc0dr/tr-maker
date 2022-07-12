@@ -1,4 +1,4 @@
-[viewBag]
+[SeoToolbox]
 ==
 <?php
 function onInit()
@@ -26,9 +26,9 @@ function onInit()
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     {% partial 'favicons/favicons' %}
-    {% placeholder seo_tags default %}
+
     {% component 'SeoToolbox' %}
-    {% endplaceholder %}
+
     <link rel="stylesheet" href="{{ layout_css }}">
     {% placeholder page_style %}
     {% styles %}

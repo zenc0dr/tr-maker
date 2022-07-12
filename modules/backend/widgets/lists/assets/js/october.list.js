@@ -2,7 +2,7 @@
  * List Widget
  *
  * Dependences:
- * - Row Link Plugin (system/assets/ui/js/list.rowlink.js)
+ * - Row Link Plugin (backend/assets/foundation/scripts/rowlink/rowlink.js)
  */
 +function ($) { "use strict";
 

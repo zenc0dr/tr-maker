@@ -18,7 +18,7 @@ class MarkdownField extends FallbackField
     {
         $config = $this->config;
 
-        if (isset($config['span']) && $config['span'] == 'adaptive') {
+        if (isset($config['span']) && $config['span'] === 'adaptive') {
             $config['externalToolbarAppState'] = 'tailor.app::toolbarExtensionPoint';
             $config['externalToolbarEventBus'] = 'tailor.app::eventBus';
         }
@@ -31,7 +31,10 @@ class MarkdownField extends FallbackField
      */
     public function defineListColumn(ListElement $list, $context = null)
     {
-        $list->defineColumn($this->fieldName, $this->label)->displayAs('summary')->useConfig($this->column ?: []);
+        $list->defineColumn($this->fieldName, $this->label)
+            ->displayAs('summary')
+            ->useConfig($this->column ?: [])
+        ;
     }
 
     /**

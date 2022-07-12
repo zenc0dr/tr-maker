@@ -179,7 +179,7 @@ class EditorExtension extends ExtensionBase
             ]
         ];
 
-        foreach ($menuConfiguration as $permission=>$itemConfig) {
+        foreach ($menuConfiguration as $permission => $itemConfig) {
             if (!$user->hasAnyAccess([$permission])) {
                 continue;
             }
@@ -187,7 +187,8 @@ class EditorExtension extends ExtensionBase
             $createMenuItem->addItemObject(
                 $section->addCreateMenuItem(
                     ItemDefinition::TYPE_TEXT,
-                    Lang::get($itemConfig['label']), 'tailor:create-document@'.$itemConfig['document']
+                    Lang::get($itemConfig['label']),
+                    'tailor:create-document@'.$itemConfig['document']
                 )
             );
         }

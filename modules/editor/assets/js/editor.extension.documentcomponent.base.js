@@ -298,7 +298,8 @@ $.oc.module.register('editor.extension.documentcomponent.base', function() {
                         return data;
                     }
                 } catch (error) {
-                    return this.handleDocumentSaveError(error, inspectorDocumentData);
+                    this.handleDocumentSaveError(error, inspectorDocumentData);
+                    throw error;
                 }
             },
 
@@ -364,8 +365,6 @@ $.oc.module.register('editor.extension.documentcomponent.base', function() {
                         errorText
                     );
                 }
-
-                return error;
             },
 
             closeDocumentTab: function closeDocumentTab(force) {

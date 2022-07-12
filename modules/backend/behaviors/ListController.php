@@ -77,7 +77,7 @@ class ListController extends ControllerBehavior
 
     /**
      * __construct the behavior
-     * @param Backend\Classes\Controller $controller
+     * @param \Backend\Classes\Controller $controller
      */
     public function __construct($controller)
     {
@@ -112,7 +112,7 @@ class ListController extends ControllerBehavior
 
     /**
      * Prepare the widgets used by this action
-     * @return void
+     * @return \Backend\Classes\WidgetBase
      */
     public function makeList($definition = null)
     {

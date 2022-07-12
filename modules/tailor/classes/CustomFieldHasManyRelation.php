@@ -50,7 +50,8 @@ class CustomFieldHasManyRelation extends HasMany
     public function getRelationExistenceQuery(Builder $query, Builder $parentQuery, $columns = ['*'])
     {
         return parent::getRelationExistenceQuery($query, $parentQuery, $columns)->where(
-            $query->qualifyColumn('host_field'), $this->relationName
+            $query->qualifyColumn('host_field'),
+            $this->relationName
         );
     }
 }

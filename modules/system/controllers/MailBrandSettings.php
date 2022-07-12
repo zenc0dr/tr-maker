@@ -125,7 +125,7 @@ class MailBrandSettings extends SettingsController
 
         $template = new MailTemplate;
         $template->layout = $layout;
-        $template->content_html = File::get(base_path('modules/system/models/mailbrandsetting/sample_template.php'));
+        $template->content_html = File::get(base_path('modules/system/models/mailbrandsetting/sample_template.htm'));
 
         return MailManager::instance()->renderTemplate($template, $data);
     }

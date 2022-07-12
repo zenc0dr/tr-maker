@@ -343,7 +343,7 @@ class Router
         }
 
         $unserialized = @unserialize(@base64_decode($cached));
-        if (!$unserialized)  {
+        if (!$unserialized) {
             return null;
         }
 
@@ -422,7 +422,8 @@ class Router
                 return $manifest['routes'] ?? [];
             }
         }
-        catch (Throwable $ex) {}
+        catch (Throwable $ex) {
+        }
 
         return [];
     }

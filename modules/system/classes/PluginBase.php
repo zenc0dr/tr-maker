@@ -240,6 +240,19 @@ class PluginBase extends ServiceProviderBase implements OctoberPackage
     }
 
     /**
+     * registerValidationRule registers a new validation rule.
+     * @param string $key The rule name
+     * @param mixed $rule The validation rule
+     * @return void
+     */
+    public function registerValidationRule($key, $rule)
+    {
+        $this->app->resolving('validator', function ($validator) use ($key, $rule) {
+            $validator->extend($key, $rule);
+        });
+    }
+
+    /**
      * getConfigurationFromYaml reads configuration from YAML file.
      * @param string|null $exceptionMessage
      * @return array|bool

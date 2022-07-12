@@ -45,3 +45,9 @@
 1.0.18:
     - 'Create table zen_trmaker_pages_blocks_pivot'
     - builder_table_create_zen_trmaker_pages_blocks_pivot.php
+1.0.19:
+    - 'Updated table zen_trmaker_pages'
+    - builder_table_update_zen_trmaker_pages_4.php
+1.0.20:
+    - 'Updated table zen_trmaker_pages'
+    - builder_table_update_zen_trmaker_pages_5.php

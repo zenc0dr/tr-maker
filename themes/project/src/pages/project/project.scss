@@ -2,6 +2,8 @@
 @import "@src/components/!common/_.scss";
 @import '@src/scss/hightlight.min.css';
 @import '@components/tables/_';
+
+
 .nav-masthead .nav-link {
    color: rgba(0, 0, 0, .5);
    border-bottom: .25rem solid transparent;
@@ -19,4 +21,20 @@
 .nav-masthead .active {
    color: #000;
    border-bottom-color: #000;
+}
+
+.block-item {
+   .block-images {
+      img {
+         width: 100%;
+      }
+      p {
+         margin: 1rem;
+         font-size: 0.95rem;
+         color: #7b7b7b;
+         width: 100%;
+         text-align: center;
+      }
+   }
+   margin-bottom: 50px;
 }

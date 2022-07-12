@@ -34,19 +34,22 @@ trait OctoberUtilPatches
                     $table->dropIndex(['slave_type']);
                 });
             }
-            catch (Exception $ex){}
+            catch (Exception $ex) {
+            }
             try {
                 Schema::table('deferred_bindings', function($table) {
                     $table->dropIndex(['slave_id']);
                 });
             }
-            catch (Exception $ex){}
+            catch (Exception $ex) {
+            }
             try {
                 Schema::table('deferred_bindings', function($table) {
                     $table->dropIndex(['session_key']);
                 });
             }
-            catch (Exception $ex){}
+            catch (Exception $ex) {
+            }
 
             Db::transaction(function() {
                 $this->comment('Optimizing columns');
@@ -112,13 +115,15 @@ trait OctoberUtilPatches
                     $table->dropIndex(['attachment_id']);
                 });
             }
-            catch (Exception $ex){}
+            catch (Exception $ex) {
+            }
             try {
                 Schema::table('system_files', function($table) {
                     $table->dropIndex(['attachment_type']);
                 });
             }
-            catch (Exception $ex){}
+            catch (Exception $ex) {
+            }
 
             Db::transaction(function() {
                 $this->comment('Optimizing columns');

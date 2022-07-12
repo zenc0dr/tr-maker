@@ -437,7 +437,7 @@ trait EditorExtensionCrud
      */
     private function upgradeSettings($documentData)
     {
-        $settings = array_key_exists('settings',  $documentData)
+        $settings = array_key_exists('settings', $documentData)
             ?  $documentData['settings']
             : [];
 
@@ -450,7 +450,8 @@ trait EditorExtensionCrud
                 $propertyValues = ApiHelpers::assertGetKey($component, 'propertyValues');
 
                 $properties = json_decode($propertyValues, true);
-                unset($properties['oc.alias'],
+                unset(
+                    $properties['oc.alias'],
                     $properties['inspectorProperty'],
                     $properties['inspectorClassName']
                 );

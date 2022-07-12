@@ -38,7 +38,10 @@ trait HasRelationStore
 
         if ($this->isLoaded) {
             $value = $this->getLoadedValueFromPost();
-            $ids = is_array($value) ? array_map(function($v) { return $v['_id'] ?? null; }, $value) : [];
+            $ids = is_array($value) ? array_map(function($v) {
+                return $v['_id'] ?? null;
+            }, $value) : [];
+
             $records = $this->getRelationQuery()->find($ids);
 
             if ($records) {

@@ -150,7 +150,8 @@ class MediaFinder extends FormWidgetBase
                     $list[] = $this->decorateFileAttributes($file);
                 }
             }
-            catch (Exception $ex) {}
+            catch (Exception $ex) {
+            }
         }
 
         // Promote to Collection

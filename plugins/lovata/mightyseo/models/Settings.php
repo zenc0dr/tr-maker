@@ -13,7 +13,7 @@ use Lovata\Toolbox\Models\CommonSettings;
  */
 class Settings extends CommonSettings
 {
-    public $settingsCode = 'lovata_mighty_seo_settings';
+    const SETTINGS_CODE = 'lovata_mighty_seo_settings';
 
     public $translatable = [
         'seo_title_prefix',

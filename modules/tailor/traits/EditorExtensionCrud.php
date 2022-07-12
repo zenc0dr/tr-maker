@@ -1,26 +1,26 @@
 <?php namespace Tailor\Traits;
 
 use Lang;
-use Yaml;
 use Config;
 use Request;
 use BackendAuth;
 use SystemException;
 use ApplicationException;
-use ValidationException;
 use Tailor\Classes\EditorExtension;
 use Tailor\Classes\Blueprint;
 use Editor\Classes\ApiHelpers;
 use Tailor\Classes\BlueprintIndexer;
 use Tailor\Classes\BlueprintException;
 use Tailor\Classes\BlueprintErrorData;
-use Symfony\Component\Yaml\Exception\ParseException;
 
 /**
  * EditorExtensionCrud implements CRUD operations for the Tailor Editor Extension
  */
 trait EditorExtensionCrud
 {
+    /**
+     * command_onOpenDocument
+     */
     protected function command_onOpenDocument()
     {
         $documentData = post('documentData');
@@ -53,6 +53,9 @@ trait EditorExtensionCrud
         return $result;
     }
 
+    /**
+     * command_onSaveDocument
+     */
     protected function command_onSaveDocument()
     {
         $documentData = $this->getRequestDocumentData();
@@ -89,6 +92,9 @@ trait EditorExtensionCrud
         return $this->getUpdateResponse($template, $originalContent);
     }
 
+    /**
+     * command_onDeleteDocument
+     */
     protected function command_onDeleteDocument()
     {
         $metadata = $this->getRequestMetadata();
@@ -99,6 +105,9 @@ trait EditorExtensionCrud
         $template->delete();
     }
 
+    /**
+     * command_onMigrateBlueprint
+     */
     protected function command_onMigrateBlueprint($controller)
     {
         $template = $this->loadBlueprintForUpdate();

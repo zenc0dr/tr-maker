@@ -134,7 +134,7 @@ trait OctoberUtilRefitLang
 
         array_forget($legacyArr, $key);
 
-        File::put($legacyPath, '<?php return '.$this->refitVarExportShort($legacyArr, true).';');
+        File::put($legacyPath, '<?php return '.$this->refitVarExportShort($legacyArr, true).';'.PHP_EOL);
     }
 
     /**

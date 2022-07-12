@@ -44,5 +44,5 @@
 
 <?php else: ?>
     <p class="flash-message static error"><?= e(trans($this->fatalError)) ?></p>
-    <p><a href="<?= $parentLink ?>" class="btn btn-default"><?= e(trans('system::lang.settings.return')) ?></a></p>
+    <p><a href="<?= $parentLink ?>" class="btn btn-default"><?= __('Return to System Settings') ?></a></p>
 <?php endif ?>

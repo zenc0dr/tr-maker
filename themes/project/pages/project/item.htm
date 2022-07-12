@@ -11,24 +11,43 @@ skip_error = 0
 [DocPage]
 slug = "{{ :slug }}"
 slug_required = 0
-smart_url_check = 1
-skip_error = 1
+smart_url_check = 0
+skip_error = 0
 
 ==
 <?php
 function onInit()
 {
-
     $obDocProject = $this->DocProject->get();
     $obDocPage = $this->DocPage->get();
-
+  
     if (!$obDocProject and !$obDocPage) {
         return $this->DocProject->getErrorResponse();
     }
 
-    $this['obPages'] = \Zen\TrMaker\Models\Page::where([['active',1],['project_id', $obDocProject->id]])->get();
-
     $this['obDocProject'] = $obDocProject;
+    $this['obLayouts'] = $obLayouts = \Zen\TrMaker\Models\Layout::where([['active',1],['project_id',$obDocProject->id]])->lists('id');
+    $this['obPages'] = $obPages = \Zen\TrMaker\Models\Page::where('active',1)->whereIn('layout_id',$obLayouts)->orderBy('nest_left')->get();
+    $this['obActivePage'] = $obActivePage = $obPages->first();
+
+    if ($obDocPage) {
+        $this['obActivePage'] = $obActivePage = $obDocPage;
+    } 
+
+    $this['arBlocksID'] = $arBlocksID = \DB::table('zen_trmaker_pages_blocks_pivot')->where('page_id', $obActivePage->id)->lists('block_id');
+    
+    
+    $obLaoutActive = $obActivePage->layout;
+    $iHeaderIdBlock = $obLaoutActive->header_id;
+    $iFooterIdBlock = $obLaoutActive->footer_id;
+
+    array_push($arBlocksID, $iFooterIdBlock);
+    array_unshift($arBlocksID, $iHeaderIdBlock);
+
+    $ids_ordered = implode(',', $arBlocksID);
+
+    $this['obBlocks'] = \Zen\TrMaker\Models\Block::whereIn('id', $arBlocksID)->orderByRaw("FIELD(id, $ids_ordered)")->get();
+  
     $this['page_css'] = mix('css/project.css', 'themes/project/assets');
     $this['page_js'] = mix('js/project.js', 'themes/project/assets');
 
@@ -43,10 +62,10 @@ function onInit()
 {% endput %}
 
 
-{% set arSEOParams = {'document': iActiveCategory} %}
+{% set arSEOParams = {'page': obActivePage} %}
 
 {% put seo_tags %}
-    {% component 'SeoToolbox' model=iActiveCategory params=arSEOParams %}
+    {% component 'SeoToolbox' model=obActivePage params=arSEOParams %}
 {% endput %}
 
 <div class="container">
@@ -63,7 +82,7 @@ function onInit()
                         </a>
                         <div class="list-group list-group-flush border-bottom scrollarea">
                             {% for obPage in obPages %}
-                            <a href="/projects/{{obDocProject.id}}/{{obPage.id}}" class="list-group-item list-group-item-action {{ (obPage.id == iActiveCategory.id) ? 'active':'' }} py-3 lh-sm" aria-current="true">
+                            <a href="/projects/{{obDocProject.id}}/{{obPage.id}}" class="list-group-item list-group-item-action {{ (obPage.id == obActivePage.id) ? 'active':'' }} py-3 lh-sm" aria-current="true">
                                 <div class="d-flex w-100 align-items-center justify-content-between">
                                     <strong class="mb-1">{{ obPage.name }}</strong>
                                 </div>
@@ -77,34 +96,49 @@ function onInit()
                 </main>
             </div>
             <div class="col-8">
-                {% if obActiveContents|length %}
-
-                    {% for obItem in obActiveContents %}
-                        <h3 class="">{{ obItem.name }}</h3>
-                        <div>{{ obItem.description|raw }}</div>
-
-                        <div class="tab-content mt-3" id="myTabContent">
-                            {% if obItem.data[0].text %}
-                            <div class="mt-3">
-                                <p>{{obItem.data[0].text}}</p>
+                <h1>{{obActivePage.name }}</h1>
+                {% if  obBlocks|length %}
+                    
+                    {% for obBlock in obBlocks %}
+                        <section class="block-item">
+                            <h3 class="">{{ obBlock.name }}</h3>
+                            <div>{{ obBlock.desc_short }}</div>
+                            <div>{{ obBlock.desc_full|raw }}</div>
+                            <div class="block-images">
+                                {% for obImage in obBlock.images %}
+                                    <img src="{{ obImage.path }}" alt="{{ obImage.title}}">
+                                {% if obImage.title %}
+                                    <p>Изображение {{loop.index}}: {{ obImage.title }}</p>
+                                {% endif %}
+                                {% endfor %}
                             </div>
-                            {% endif %}
-
-                            {% if obItem.data[0].code %}
-                            <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
-                            <pre><code class="language-json">{{ obItem.data[0].code|raw }}</code></pre>
+                            <div class="page-stats">
+                                <div><b>Разработка займет:</b> {{ (obBlock.time) ? obBlock.time : '>360'}} мин.</div>
+                                <div><b>Стоимость:</b> {{ obBlock.price }} ₽</div>
                             </div>
-                            {% endif %}
+                            <div class="tab-content mt-3" id="myTabContent">
+                                {% if obBlock.data[0].text %}
+                                <div class="mt-3">
+                                    <p>{{obBlock.data[0].text}}</p>
+                                </div>
+                                {% endif %}
 
-                            {% if obItem.data[0].image|length %}
-                            <div class="mt-3">
-                                <img src="{{ obItem.data[0].image|media }}" width='100%' alt="image">
+                                {% if obBlock.data[0].code %}
+                                <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
+                                <pre><code class="language-json">{{ obBlock.data[0].code|raw }}</code></pre>
+                                </div>
+                                {% endif %}
+
+                                {% if obBlock.data[0].image|length %}
+                                <div class="mt-3">
+                                    <img src="{{ obItem.data[0].image|media }}" width='100%' alt="image">
+                                </div>
+                                {% endif %}
                             </div>
-                            {% endif %}
-                        </div>
+                        </section>
                     {% endfor %}
                 {% else %}
-                    <h3>Записей нет!</h3>
+                    <h3>Блоков на этой странице  еще нет!</h3>
                 {% endif %}
             </div>
         </div>

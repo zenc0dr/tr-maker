@@ -1,15 +1,23 @@
 <?php namespace Cms\Traits;
 
 /**
- * Provides data for the front-end CMS IntelliSense feature.
+ * EditorIntellisense provides data for the front-end CMS IntelliSense feature.
  */
 trait EditorIntellisense
 {
-    protected function intellisenseLoadOctoberTags() {
+    /**
+     * intellisenseLoadOctoberTags
+     */
+    protected function intellisenseLoadOctoberTags()
+    {
         return $this->loadAndLocalizeJsonFile(__DIR__.'/editorintellisense/octobertags.json');
     }
 
-    protected function intellisenseLoadTwigFilters() {
+    /**
+     * intellisenseLoadTwigFilters
+     */
+    protected function intellisenseLoadTwigFilters()
+    {
         return $this->loadAndLocalizeJsonFile(__DIR__.'/editorintellisense/twigfilters.json');
     }
 }
